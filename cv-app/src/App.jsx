@@ -882,9 +882,13 @@ export default function App() {
             <section className={`relative z-10 mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-zinc-200 transition-all duration-1000 print:hidden ${isBrokenUI ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto'}`}>
               <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8 flex items-center gap-2"><PlayCircle size={16}/> Freelance Project Showcase</h3>
               <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-6">
-                 <h4 className="font-semibold text-zinc-900 text-sm sm:text-base mb-2">QA Transformation Initiatives</h4>
+                 <div className="flex items-center gap-3 mb-2">
+                   <h4 className="font-semibold text-zinc-900 text-sm sm:text-base">QA Transformation Initiatives</h4>
+                   <span className="px-2.5 py-0.5 bg-amber-100 text-amber-700 border border-amber-200 rounded text-[10px] font-bold tracking-widest uppercase animate-pulse">In Progress</span>
+                 </div>
                  <p className="text-xs sm:text-sm text-zinc-600 mb-6 leading-relaxed">
-                   Showcasing advanced QA architecture and automation strategies implemented for freelance clients, focusing on scalable frameworks, CI/CD integration, and quality process optimization.
+                   Showcasing advanced QA architecture and automation strategies implemented for freelance clients, focusing on scalable frameworks, CI/CD integration, and quality process optimization. <br/>
+                   <strong className="text-indigo-600 mt-2 inline-block">Project currently in progress. We will update with more news soon.</strong>
                  </p>
                  <div className="w-full aspect-video rounded-lg border border-zinc-300 overflow-hidden shadow-sm bg-black">
                    <video 
