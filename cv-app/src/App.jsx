@@ -98,7 +98,7 @@ export default function App() {
         "Conducted backend testing using proprietary institutional frameworks and configured main monitoring dashboards.",
         "Developed automated tests for mobile using TypeScript and Appium on SauceLabs, and configured CI/CD pipelines."
       ],
-      tags: ["TypeScript", "WebdriverIO", "Cucumber", "Vitest", "PHPUnit", "Appium", "SauceLabs", "GitHub Copilot", "Google Gemini"]
+      tags: ["TypeScript", "WebdriverIO", "Cucumber", "Vitest", "PHPUnit", "Appium", "SauceLabs", "GitHub Copilot", "Google Gemini", "TEST UNITARIOS", "TESTING MOBILE", "BACKEND TESTING"]
     },
     { 
       role: "QA Architect / QA Lead / Scrum Master", 
@@ -117,7 +117,7 @@ export default function App() {
         "Engaged on recruitment.",
         "Collaborate with Producto Owner and team to improve the process. Define metrics and create reports for the different projects."
       ],
-      tags: ["QA Strategy", "Scrum", "Playwright", "Cucumber", "TypeScript", "Automation Frameworks", "Metrics", "Team Leadership"]
+      tags: ["QA Strategy", "Scrum", "Playwright", "Cucumber", "TypeScript", "Automation Frameworks", "Metrics", "Team Leadership", "TESTING FUNCIONAL", "BACKEND TESTING"]
     },
     { 
       role: "QA Architect / Technical Lead", 
@@ -126,7 +126,7 @@ export default function App() {
       details: [
         "QA Automation Lead and support for the QA community.",
         "Part of Expert Community, that give support about QA to all company.",
-        "Participate as QA in news pre-sales, preparing propposals, requirements, and defining resources y necessities.",
+        "Participate as QA in news pre-sales, preparing proposals, requirements, and defining resources y necessities.",
         "Prepare and propose new technical course and formations for the QA communities.",
         "Ensure all processes are controlled and monitored, for 9 tribes, for the new supermarket application.", 
         "Process quality audits and quality assurance reviews.",
@@ -135,7 +135,7 @@ export default function App() {
         "Propose improvements for the processes.",
         "Audit for an external application: review of requirements and documentation, evaluate the development process, and evaluate the QA tasks. Generate a report to define the price applications according to the quality."
       ],
-      tags: ["QA Architecture", "Quality Gates", "Audits", "Pre-sales", "Process Improvement"]
+      tags: ["QA Architecture", "Quality Gates", "Audits", "Pre-sales", "Process Improvement", "TESTING FUNCIONAL", "BACKEND TESTING"]
     },
     { 
       role: "QA Manager / QA Automation", 
@@ -157,7 +157,7 @@ export default function App() {
         "Define the automation framework for the different projects according to the requirements and resources (Cypress with TypeScript, WebdriverIO with TypeScript).",
         "Develop and dictates formation course about QA and how to work in an agile environment for gerent, product managers, and other important personnel."
       ],
-      tags: ["Cypress", "WebdriverIO", "Gherkin", "TypeScript", "QA Management"]
+      tags: ["Cypress", "WebdriverIO", "Gherkin", "TypeScript", "QA Management", "TESTING FUNCIONAL", "API TESTING", "BACKEND TESTING"]
     },
     { 
       role: "QA Lead / QA Automation Tech Lead", 
@@ -173,7 +173,7 @@ export default function App() {
         "Design QA strategy for the different chatbots used in the project, challenge: multiples market, channels and languages.",
         "POC for client: Automation framework with java, spring boot, cucumber, docker and jenkings. Configuration of Jira with Xray to automate the process of implement new test cases using BDD."
       ],
-      tags: ["Java", "Spring Boot", "WebdriverIO", "TypeScript", "Cucumber", "Docker", "Jenkins", "Jira", "Xray", "BDD"]
+      tags: ["Java", "Spring Boot", "WebdriverIO", "TypeScript", "Cucumber", "Docker", "Jenkins", "Jira", "Xray", "BDD", "TESTING FUNCIONAL", "TESTING MOBILE", "API TESTING", "BACKEND TESTING"]
     },
     { 
       role: "QA Lead / Functional & Automated Tester", 
@@ -196,7 +196,7 @@ export default function App() {
         "Testing of the mobile applications for different OS: android, iOS, and windows.",
         "Project estimation and develop test script using Selenium, Java, TestNG (page factory and page object pattern)."
       ],
-      tags: ["Appium", "Java", "TestNG", "Selenium", "iOS", "Android", "Kanban"]
+      tags: ["Appium", "Java", "TestNG", "Selenium", "iOS", "Android", "Kanban", "TESTING FUNCIONAL", "TESTING MOBILE", "BACKEND TESTING"]
     },
     { 
       role: "Manual Tester, Automated Testing", 
@@ -212,7 +212,7 @@ export default function App() {
         "Develop automated tests for the smoke test, using Selenium Webdriver, C# (POM - PF).",
         "Some relevant projects in this account: New interactive map of San Francisco Airport. PVA, accessibility testing for the campaign for Paralyzed Veterans of America."
       ],
-      tags: ["Selenium Webdriver", "C#", "Mobile Testing", "Accessibility"]
+      tags: ["Selenium Webdriver", "C#", "Mobile Testing", "Accessibility", "TESTING FUNCIONAL", "TESTING MOBILE", "API TESTING", "BACKEND TESTING"]
     },
     { 
       role: "Developer Frontend", 
@@ -224,7 +224,7 @@ export default function App() {
         "Responsive web design.", 
         "Responsive email marketing."
       ],
-      tags: ["WordPress", "Joomla", "Frontend", "Responsive Design"]
+      tags: ["WordPress", "Joomla", "Frontend", "Responsive Design", "BACKEND TESTING"]
     },
     { 
       role: "Functional Analyst / Developer Back / QA Tester", 
@@ -241,7 +241,7 @@ export default function App() {
         "Reporting and defects trucking.",
         "Data preparation and Control results."
       ],
-      tags: ["PHP", "MySQL", "JavaScript", "UAT", "Manual Testing"]
+      tags: ["PHP", "MySQL", "JavaScript", "UAT", "Manual Testing", "TESTING FUNCIONAL", "BACKEND TESTING"]
     },
     { 
       role: "Team Leader / Developer / Functional Testing", 
@@ -256,7 +256,7 @@ export default function App() {
         "Installation, configuration, and maintenance of the learning platform, courses, material, and students.",
         "Support for the different clients with Enterprise Architect."
       ],
-      tags: ["Enterprise Architect", "E-learning", "Functional Testing", "Team Leadership"]
+      tags: ["Enterprise Architect", "E-learning", "Functional Testing", "Team Leadership", "TESTING FUNCIONAL", "BACKEND TESTING"]
     },
     { 
       role: "Front end and Back end / Functional Testing", 
@@ -270,7 +270,7 @@ export default function App() {
         "Reporting and defects tracking.",
         "Data Preparation and Control results."
       ],
-      tags: ["Java", "JSP", "MVC", "SEO", "Functional Testing"]
+      tags: ["Java", "JSP", "MVC", "SEO", "Functional Testing", "TESTING FUNCIONAL", "BACKEND TESTING"]
     }
   ];
 
@@ -643,7 +643,7 @@ export default function App() {
       <div className="flex-1 md:ml-[280px] relative flex justify-center pb-32 print:m-0 print:p-0 print:pb-0">
         
         {/* Main CV Container */}
-        <div className="w-full max-w-4xl transition-all duration-500 relative my-8 sm:my-16 px-4 sm:px-8 print:my-0 print:px-0 print:w-full print:max-w-none">
+        <div className="w-full max-w-5xl xl:max-w-6xl transition-all duration-500 relative my-8 sm:my-16 px-4 sm:px-8 print:my-0 print:px-0 print:w-full print:max-w-none">
           
           {/* Header Dashboard superior */}
           {!isBrokenUI && phase === 'FIXED' && (
@@ -848,6 +848,12 @@ export default function App() {
                   
                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8 mt-12">Featured Repositories</h3>
                   <ul className="space-y-8">
+                    <li>
+                      <a href="https://github.com/qatransformation/playwright_cucumber_spanish" target="_blank" rel="noopener noreferrer" className="group block border-l-2 border-indigo-100 pl-4 hover:border-indigo-400 transition-all">
+                         <span className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 flex items-center gap-2">playwright_cucumber_spanish <ExternalLink size={14}/></span>
+                         <span className="text-[12px] text-zinc-500 block mt-2 font-light">Playwright automation framework integrated with Cucumber BDD, configured for Spanish language step definitions.</span>
+                      </a>
+                    </li>
                     <li>
                       <a href="https://github.com/qatransformation/playwright_cucumber_pom" target="_blank" rel="noopener noreferrer" className="group block border-l-2 border-indigo-100 pl-4 hover:border-indigo-400 transition-all">
                          <span className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 flex items-center gap-2">playwright_cucumber_pom <ExternalLink size={14}/></span>
@@ -1059,7 +1065,7 @@ export default function App() {
           </div>
         )}
 
-        {/* Visualizador IDE Modal - FIXED JSX Parsing Errors */}
+        {/* Visualizador IDE Modal */}
         {phase === 'IDE_FIX' && (
           <div className="fixed inset-0 md:left-[280px] bg-black/40 backdrop-blur-md z-[80] flex items-center justify-center p-2 sm:p-4 print:hidden">
             <div className="bg-[#09090b] border border-white/10 rounded-xl shadow-2xl w-[95vw] md:w-full max-w-4xl h-[65vh] flex flex-col overflow-hidden animate-in zoom-in-95">
