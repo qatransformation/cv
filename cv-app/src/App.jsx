@@ -792,7 +792,7 @@ export default function App() {
                      className="w-full h-full object-cover" 
                      controls 
                      preload="metadata">
-                     <source src="assets/qatransformationai.mp4" type="video/mp4" />
+                     <source src={`${import.meta.env.BASE_URL}qatransformationai.mp4`} type="video/mp4" />
                      Tu navegador no soporta el elemento de video.
                    </video>
                  </div>
