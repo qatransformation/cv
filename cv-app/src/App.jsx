@@ -566,7 +566,7 @@ export default function App() {
               )}
 
               <div>
-                <h1 className={"font-semibold tracking-tighter transition-all duration-1000 " + (isBrokenUI ? "text-2xl font-mono text-red-900 line-through profile-name" : "text-3xl sm:text-5xl text-zinc-900 profile-name")}>
+                <h1 className={"transition-all duration-1000 " + (isBrokenUI ? "font-semibold tracking-tighter text-2xl font-mono text-red-900 line-through profile-name" : "text-4xl sm:text-5xl text-zinc-900 font-serif italic tracking-tight profile-name")}>
                   {isBrokenUI ? 'Sizilia Ponse M.' : 'Cecilia Ponce Molinas'}
                 </h1>
                 <h2 className={"mt-2 font-medium transition-all duration-1000 " + (isBrokenUI ? "text-sm text-red-600" : "text-base sm:text-lg text-zinc-500 tracking-tight")}>
@@ -643,7 +643,7 @@ export default function App() {
                         {job.tags && job.tags.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-3 print:mt-2">
                             {job.tags.map(tag => (
-                              <span key={tag} className="px-2 py-0.5 bg-zinc-100 text-zinc-600 rounded text-[10px] sm:text-xs font-medium border border-zinc-200">
+                              <span key={tag} className="px-2 py-0.5 bg-sky-50 text-sky-700 rounded text-[10px] sm:text-xs font-medium border border-sky-200/60">
                                 {tag}
                               </span>
                             ))}
@@ -720,7 +720,7 @@ export default function App() {
                 <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Tech Stack & Tools</h3>
                 <div className="flex flex-wrap gap-2">
                   {['WebdriverIO', 'Cypress', 'Playwright', 'Appium', 'Selenium', 'Cucumber (BDD)', 'TypeScript', 'JavaScript', 'Java', 'C#', 'PHP', 'MySQL', 'Vitest', 'xUnit', 'PHP Unit', 'TestNG', 'Karate', 'Jira', 'Xray', 'Jenkins', 'Gitlab CI', 'Sonarqube', 'Postman'].map(skill => (
-                    <span key={skill} className="px-2.5 py-1 bg-zinc-100/50 border border-zinc-200/60 rounded text-xs font-medium text-zinc-600 print:border-none print:p-0 print:after:content-[',_'] print:last:after:content-['']">
+                    <span key={skill} className="px-2.5 py-1 bg-violet-50/80 border border-violet-200/60 rounded text-xs font-medium text-violet-700 print:border-none print:p-0 print:text-zinc-600 print:after:content-[',_'] print:last:after:content-['']">
                       {skill}
                     </span>
                   ))}
@@ -728,7 +728,7 @@ export default function App() {
 
                 <div className="mt-10">
                   <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Featured Repositories</h3>
-                  <ul className="space-y-4">
+                  <ul className="space-y-6">
                     <li>
                       <a href="https://github.com/qatransformation/playwright_cucumber_spanish" target="_blank" rel="noopener noreferrer" className="group">
                         <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
@@ -736,6 +736,13 @@ export default function App() {
                         </strong>
                       </a>
                       <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A Playwright automation framework integrated with Cucumber BDD, configured for Spanish language step definitions.</span>
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {['Playwright', 'Cucumber', 'TypeScript'].map(tag => (
+                          <span key={tag} className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-[10px] font-semibold border border-indigo-100">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </li>
                     <li>
                       <a href="https://github.com/qatransformation/playwright_cucumber_pom" target="_blank" rel="noopener noreferrer" className="group">
@@ -744,6 +751,13 @@ export default function App() {
                         </strong>
                       </a>
                       <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A robust Playwright testing framework implementing Cucumber BDD and the Page Object Model (POM) design pattern.</span>
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {['Playwright', 'Cucumber', 'TypeScript', 'POM'].map(tag => (
+                          <span key={tag} className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-[10px] font-semibold border border-indigo-100">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </li>
                     <li>
                       <a href="https://github.com/qatransformation/webdriverio-cucumber-pom-framework" target="_blank" rel="noopener noreferrer" className="group">
@@ -752,6 +766,13 @@ export default function App() {
                         </strong>
                       </a>
                       <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A complete WebdriverIO automation framework utilizing Cucumber for BDD and adhering to the Page Object Model (POM) architecture.</span>
+                      <div className="flex flex-wrap gap-1.5 mt-2">
+                        {['WebdriverIO', 'Cucumber', 'TypeScript', 'POM'].map(tag => (
+                          <span key={tag} className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-[10px] font-semibold border border-indigo-100">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </li>
                   </ul>
                 </div>
