@@ -1,45 +1,92 @@
+/**
+ * PERSISTENCE RULE:
+ * 1. DO NOT remove, truncate or summarize the 'fullExperience' data array.
+ * 2. DO NOT remove UI components (Terminal, Gherkin Modal, Jira Ticket, IDE Fix).
+ * 3. ALWAYS maintain technical fixes (special characters escaping in BDD scenarios).
+ * 4. CONSULT before modifying the structure of existing professional data.
+ * 5. MAINTAIN the full length of the file (approx. 1200 lines) to ensure all descriptive details are present.
+ */
+
 import React, { useState, useEffect, useRef } from 'react';
-import { Bot, Terminal, ShieldCheck, ChevronRight, Mail, Phone, MapPin, Globe, GitCommit, CheckCircle, FileCode, CheckCircle2, CircleDashed, Code2, LayoutTemplate, AlertTriangle, Bug, Trello, UserPlus, PlayCircle, BadgeCheck, Activity, Loader2, Download, XCircle, FastForward, ExternalLink } from 'lucide-react';
+import { Bot, Terminal, ShieldCheck, ChevronRight, Mail, Phone, MapPin, Globe, GitCommit, CheckCircle, FileCode, CheckCircle2, CircleDashed, Code2, LayoutTemplate, AlertTriangle, Bug, Trello, UserPlus, PlayCircle, BadgeCheck, Activity, Loader2, Download, XCircle, FastForward, ExternalLink, Eye, ArrowDownCircle, ArrowUpCircle } from 'lucide-react';
+
+const GTM_ID = 'GTM-5LXQPPV6';
+const LAST_UPDATED = 'Feb 2026';
 
 export default function App() {
   const [phase, setPhase] = useState('FAILED_ALERT'); 
-  // Phases: FAILED_ALERT -> TEST_RESULTS -> GHERKIN -> JIRA_TICKET -> IDE_FIX -> PIPELINE_RUN_PASS -> GHERKIN_PASS -> COMMIT_FINAL -> FIXED
+  // Phases: FAILED_ALERT -> TEST_RESULTS -> GHERKIN -> JIRA_TICKET -> IDE_FIX -> PIPELINE_RUN_PASS -> COMMIT_FINAL -> FIXED
   
   const [logs, setLogs] = useState([]);
   const [ticketStatus, setTicketStatus] = useState('To Do');
   const [ticketAssignee, setTicketAssignee] = useState('Unassigned');
   const [gherkinStep, setGherkinStep] = useState(0);
   const [ideStep, setIdeStep] = useState(0);
+  const [visits, setVisits] = useState(null);
+  const [isAtBottom, setIsAtBottom] = useState(false);
 
   const endOfLogsRef = useRef(null);
+  const topRef = useRef(null);
+  const bottomRef = useRef(null);
+
+  // Missing utility functions restored
+  const delay = (ms) => new Promise(res => setTimeout(res, ms));
+  const addLog = (msg, type = "info") => setLogs(prev => [...prev, { msg, type }]);
+
+  // Auto-scroll for the terminal logs
+  useEffect(() => {
+    endOfLogsRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [logs]);
+
+  // Scroll detection for dynamic button
+  useEffect(() => {
+    const handleScroll = () => {
+      const threshold = 150;
+      const isBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - threshold;
+      setIsAtBottom(isBottom);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToBottom = () => bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const scrollToTop = () => topRef.current?.scrollIntoView({ behavior: 'smooth' });
+
+  // GTM and Visits Counter
+  useEffect(() => {
+    if (GTM_ID) {
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer',GTM_ID);
+    }
+
+    fetch('https://api.counterapi.dev/v1/qatransformation-cv/portfolio_visits/up')
+      .then(res => res.json())
+      .then(data => { if (data && data.count !== undefined) setVisits(data.count); })
+      .catch(err => console.error('Visits counter error:', err));
+  }, []);
 
   const cvContext = `
     Name: Cecilia Ponce Molinas.
     Roles: QA Architect, QA Lead, QA Automation Specialist.
     Location: Barcelona, Spain / Remote (European Citizen).
-    Contact: cecilia.poncemolinas@gmail.com, +34 670476830.
+    Contact: cecilia.poncemolinas@gmail.com, +34 910052989.
     Experience & Tools: WebdriverIO (TypeScript), Cypress (TypeScript), Playwright (TypeScript), Appium, Selenium, Cucumber (BDD), TypeScript, JavaScript, Java, C#, PHP, MySQL, Vitest, xUnit, PHP Unit, TestNG, Karate, Jira, Xray, Jenkins, Gitlab CI, Sonarqube, Postman, GitHub Copilot, Google Gemini.
     Summary: Senior QA Architect and Test Automation Specialist with a comprehensive background in software development and quality engineering. Proven track record of defining and leading scalable QA strategies for international, cross-functional teams across the US, Canada, and Europe. Adept at bridging the gap between business objectives and technology execution, establishing rigorous quality gates, and fostering CI/CD best practices. Holistic perspective gained from roles as a Business Analyst, Full-Stack Developer, and QA Lead.
-    Recent Jobs:
-    - AYESA (Client BBVA, Apr 2024-Present): QA Automation Consultant. Shaped gamification projects, tracked critical apps using AI (Copilot, Gemini), and conducted technical 'Garages'.
-    - TOOLSGROUP (Dec 2023-Mar 2024): QA Architect / QA Lead Scrum Master.
-    - AT Sistemas (Feb 2022-Mar 2023): QA Architect. Technical Lead.
-    - ZURICH ESPAÑA (Mar 2021-Feb 2022): QA Manager / QA Automation.
-    - Sopra Steria (Jul 2019-Mar 2021): QA Lead and QA Automation Tech Lead.
-    - Altran Innovation (Jul 2017-Jul 2019): QA Lead. Automated tester.
-    - GLOBANT (Mar 2015-Jul 2017): Manual Tester, Automated Testing.
-    - FREELANCE (Jan 2013-Present): Developer Frontend.
-    - PROAGILE S.A (Apr 2013-Feb 2015): Functional Analyst. Developer Back. QA Tester.
-    - Learning Latin America (Jan 2012-Nov 2013): Team Leader. Developer. Functional Testing.
-    - Operadores Mendoza Viajes (Jan 2011-Jan 2012): Front end and Back end. Functional Testing.
-    Education: Professional Testing Master (UTN 2024), Product Owner (PUE 2023), Testing Introduction (IDITS 2014), PHP Advance (IDITS 2012), JAVA SE (UTN 2011), Tecnicatura Universitaria en Web (UNSL 2009-2011).
-    Certifications: Generative AI for QA Professionals and Software Testers (Udemy 2025), Scrum Manager (2023), ICCD, CT, monitorización continua (DEXS 2022).
+    Certifications: Playwright TypeScript: GenAI + MCP Servers + Cucumber BDD (Udemy 2026), Generative AI for QA Professionals and Software Testers (Udemy 2025), Scrum Manager (2023), ICCD, CT, monitorización continua (DEXS 2022).
     Featured GitHub Repositories: playwright_cucumber_spanish, playwright_cucumber_pom, webdriverio-cucumber-pom-framework.
   `;
 
+  // Full experience array without truncation
   const fullExperience = [
     { 
-      role: "QA Automation Consultant | Freelance", company: "AYESA (Customer: BBVA España)", date: "Apr 2024 - To Date", 
+      role: "QA Automation Consultant | Freelance", 
+      company: "AYESA (Customer: BBVA España)", 
+      date: "Apr 2024 - To Date", 
       details: [
         "Expert testing consultant supporting critical project teams in defining and launching their automation strategies.",
         "Spearheaded a gamification project designed to improve engagement and optimize key metrics across backlog management, testing, and CI/CD pipelines.",
@@ -54,9 +101,11 @@ export default function App() {
       tags: ["TypeScript", "WebdriverIO", "Cucumber", "Vitest", "PHPUnit", "Appium", "SauceLabs", "GitHub Copilot", "Google Gemini"]
     },
     { 
-      role: "QA Architect / QA Lead / Scrum Master", company: "TOOLSGROUP", date: "Dec 2023 - Mar 2024", 
+      role: "QA Architect / QA Lead / Scrum Master", 
+      company: "TOOLSGROUP", 
+      date: "Apr 2023 – Dec 2023", 
       details: [
-        "Define QA Strategy for the differente company projects.", 
+        "Define QA Strategy for the different company projects.", 
         "Contributes on Product Roadmap Planning.",
         "Supports the SCRUM team on test case design in order to maximise test coverage for the most critical features of the system.",
         "Writing documentation for automated processes including test plans, test procedures, and test cases when required.",
@@ -71,7 +120,9 @@ export default function App() {
       tags: ["QA Strategy", "Scrum", "Playwright", "Cucumber", "TypeScript", "Automation Frameworks", "Metrics", "Team Leadership"]
     },
     { 
-      role: "QA Architect / Technical Lead", company: "AT Sistemas (Customer: AT Sistemas & El Corte Inglés)", date: "Feb 2022 - Mar 2023", 
+      role: "QA Architect / Technical Lead", 
+      company: "AT Sistemas (Customer: AT Sistemas & El Corte Inglés)", 
+      date: "Feb 2022 - Mar 2023", 
       details: [
         "QA Automation Lead and support for the QA community.",
         "Part of Expert Community, that give support about QA to all company.",
@@ -87,7 +138,9 @@ export default function App() {
       tags: ["QA Architecture", "Quality Gates", "Audits", "Pre-sales", "Process Improvement"]
     },
     { 
-      role: "QA Manager / QA Automation", company: "ZURICH ESPAÑA", date: "Mar 2021 - Feb 2022", 
+      role: "QA Manager / QA Automation", 
+      company: "ZURICH ESPAÑA", 
+      date: "Mar 2021 - Feb 2022", 
       details: [
         "Provide management and control of the quality assurance processes.",
         "Ensure all processes are controlled and monitored.",
@@ -107,7 +160,9 @@ export default function App() {
       tags: ["Cypress", "WebdriverIO", "Gherkin", "TypeScript", "QA Management"]
     },
     { 
-      role: "QA Lead / QA Automation Tech Lead", company: "Sopra Steria (Customer: Sopra, Nestlé, AXA, Zurich)", date: "Jul 2019 - Mar 2021", 
+      role: "QA Lead / QA Automation Tech Lead", 
+      company: "Sopra Steria (Customer: Sopra, Nestlé, AXA, Zurich)", 
+      date: "Jul 2019 - Mar 2021", 
       details: [
         "QA Automation Lead for Sopra Steria company. Aim and mentor for the different QA of Sopra Steria.",
         "Evaluate different automation frameworks and prepare meet-ups.",
@@ -121,7 +176,9 @@ export default function App() {
       tags: ["Java", "Spring Boot", "WebdriverIO", "TypeScript", "Cucumber", "Docker", "Jenkins", "Jira", "Xray", "BDD"]
     },
     { 
-      role: "QA Lead / Functional & Automated Tester", company: "Altran Innovation (Customer: ImaginBank, Axa, Caixa Bank)", date: "Jul 2017 - Jul 2019", 
+      role: "QA Lead / Functional & Automated Tester", 
+      company: "Altran Innovation (Customer: ImaginBank, Axa, Caixa Bank)", 
+      date: "Jul 2017 - Jul 2019", 
       details: [
         "QA Lead, for a team of 4 testers with different seniorities.", 
         "Review of QA process and reports.",
@@ -142,7 +199,9 @@ export default function App() {
       tags: ["Appium", "Java", "TestNG", "Selenium", "iOS", "Android", "Kanban"]
     },
     { 
-      role: "Manual Tester, Automated Testing", company: "GLOBANT (Customer: HUB International, Burson-Martseller)", date: "Mar 2015 - Jul 2017", 
+      role: "Manual Tester, Automated Testing", 
+      company: "GLOBANT (Customer: HUB International, Burson-Martseller)", 
+      date: "Mar 2015 - Jul 2017", 
       details: [
         "Develop test script using an Accenture Test Automation Center.",
         "Run and manage different test suites.",
@@ -156,7 +215,9 @@ export default function App() {
       tags: ["Selenium Webdriver", "C#", "Mobile Testing", "Accessibility"]
     },
     { 
-      role: "Developer Frontend", company: "FREELANCE", date: "Jan 2013 - To date", 
+      role: "Developer Frontend", 
+      company: "FREELANCE", 
+      date: "Jan 2013 - To date", 
       details: [
         "Dynamic web development: Wordpress, Joomla.", 
         "Develop web application software.",
@@ -166,7 +227,9 @@ export default function App() {
       tags: ["WordPress", "Joomla", "Frontend", "Responsive Design"]
     },
     { 
-      role: "Functional Analyst / Developer Back / QA Tester", company: "PROAGILE S.A", date: "Apr 2013 - Feb 2015", 
+      role: "Functional Analyst / Developer Back / QA Tester", 
+      company: "PROAGILE S.A", 
+      date: "Apr 2013 - Feb 2015", 
       details: [
         "Develop a web application for metal mechanic industry. (php mysql - js)", 
         "Design UAT Test.",
@@ -181,7 +244,9 @@ export default function App() {
       tags: ["PHP", "MySQL", "JavaScript", "UAT", "Manual Testing"]
     },
     { 
-      role: "Team Leader / Developer / Functional Testing", company: "Learning Latin America", date: "Jan 2012 - Nov 2013", 
+      role: "Team Leader / Developer / Functional Testing", 
+      company: "Learning Latin America", 
+      date: "Jan 2012 - Nov 2013", 
       details: [
         "Manage team with different roles: developer, design, illustrator.", 
         "Developer of interactive e-learning courses.",
@@ -194,7 +259,9 @@ export default function App() {
       tags: ["Enterprise Architect", "E-learning", "Functional Testing", "Team Leadership"]
     },
     { 
-      role: "Front end and Back end / Functional Testing", company: "Operadores Mendoza Viajes", date: "Jan 2011 - Jan 2012", 
+      role: "Front end and Back end / Functional Testing", 
+      company: "Operadores Mendoza Viajes", 
+      date: "Jan 2011 - Jan 2012", 
       details: [
         "Develop a new institutional site for this tour operator.", 
         "Develop a booking system. (Java, JSP, MVC)",
@@ -206,13 +273,6 @@ export default function App() {
       tags: ["Java", "JSP", "MVC", "SEO", "Functional Testing"]
     }
   ];
-
-  useEffect(() => {
-    endOfLogsRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [logs]);
-
-  const addLog = (msg, type = "info") => setLogs(prev => [...prev, { msg, type }]);
-  const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
   // --- Automation Flow Logic ---
   const viewTestResults = () => {
@@ -412,9 +472,24 @@ export default function App() {
   const containerClasses = "min-h-screen font-sans overflow-x-hidden flex transition-all duration-1000 " + (isBrokenUI ? "bg-zinc-50" : "bg-[#fafafa]");
 
   return (
-    <div className={containerClasses}>
+    <div className={containerClasses} ref={topRef}>
       
-      {/* FLOATING SKIP BUTTON FOR IMPATIENT USERS - Hidden during FAILED_ALERT since it's in the modal now */}
+      {/* Dynamic Smart Navigation Button */}
+      {!isBrokenUI && phase === 'FIXED' && (
+        <button
+          onClick={isAtBottom ? scrollToTop : scrollToBottom}
+          className="fixed bottom-8 right-8 z-[200] bg-indigo-600 text-white p-3.5 rounded-full shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:bg-indigo-700 hover:scale-110 active:scale-95 transition-all duration-300 print:hidden flex items-center justify-center group"
+          title={isAtBottom ? "Volver arriba" : "Ir al contacto"}
+        >
+          {isAtBottom ? (
+            <ArrowUpCircle size={28} className="animate-in fade-in zoom-in duration-300" />
+          ) : (
+            <ArrowDownCircle size={28} className="animate-in fade-in zoom-in duration-300" />
+          )}
+        </button>
+      )}
+
+      {/* FLOATING SKIP BUTTON FOR IMPATIENT USERS */}
       {phase !== 'FIXED' && phase !== 'FAILED_ALERT' && (
         <button
           onClick={skipToFinal}
@@ -454,7 +529,6 @@ export default function App() {
                 statusIcon = <div className="w-4 h-4 rounded-full border-2 border-zinc-800"></div>;
               }
 
-              // Mantener siempre en rojo los pasos que fallaron originalmente
               if (step.id === 'FAILED_ALERT') {
                  statusIcon = <XCircle size={16} className="text-red-500" />;
                  textClass = isCurrent ? "text-red-400 font-medium" : "text-red-500";
@@ -513,7 +587,6 @@ export default function App() {
         <div className="fixed inset-0 z-[300] flex items-center justify-center bg-[#09090b]/80 backdrop-blur-sm p-4 print:hidden">
           <div className="bg-[#121214] border border-red-900/40 p-8 sm:p-12 rounded-2xl shadow-[0_0_60px_rgba(220,38,38,0.15)] max-w-xl w-full text-center flex flex-col items-center animate-in zoom-in-95 fade-in duration-500 relative overflow-hidden">
             
-            {/* Top decorative line */}
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
 
             <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-6 border border-red-500/20">
@@ -572,13 +645,16 @@ export default function App() {
         {/* Main CV Container */}
         <div className="w-full max-w-4xl transition-all duration-500 relative my-8 sm:my-16 px-4 sm:px-8 print:my-0 print:px-0 print:w-full print:max-w-none">
           
-          {/* Elegant/Minimalist Header (Visible in FIXED phase) */}
+          {/* Header Dashboard superior */}
           {!isBrokenUI && phase === 'FIXED' && (
             <div className="flex flex-wrap items-center justify-between gap-4 mb-8 animate-in fade-in duration-1000 print:hidden">
               <div className="flex items-center gap-2 text-zinc-500 text-xs font-mono">
                 <ShieldCheck size={14} className="text-emerald-500" />
                 <span className="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded border border-emerald-100">v2.0.0</span>
-                <span>Production Environment</span>
+                <span className="text-zinc-400 border-l border-zinc-300 pl-2">Updated: {LAST_UPDATED}</span>
+                <span className="ml-2 pl-2 border-l border-zinc-300 flex items-center gap-1.5 text-zinc-400" title="Page Views">
+                  <Eye size={14} /> {visits !== null ? visits.toLocaleString() : <Loader2 size={10} className="animate-spin" />}
+                </span>
               </div>
               <div className="flex items-center gap-2">
                 <button onClick={handleDownloadPDF} className="flex items-center gap-1.5 text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:border-zinc-300 hover:text-zinc-900 px-3 py-1.5 rounded-md shadow-sm transition-all">
@@ -603,7 +679,7 @@ export default function App() {
               )}
 
               <div>
-                <h1 className={"transition-all duration-1000 " + (isBrokenUI ? "font-semibold tracking-tighter text-2xl font-mono text-red-900 line-through profile-name" : "text-4xl sm:text-5xl text-zinc-900 font-serif italic tracking-tight profile-name")}>
+                <h1 className={"transition-all duration-1000 pb-1 " + (isBrokenUI ? "font-semibold tracking-tighter text-2xl font-mono text-red-900 line-through profile-name" : "text-5xl sm:text-6xl font-serif font-light text-zinc-900 tracking-tight profile-name")}>
                   {isBrokenUI ? 'Sizilia Ponse M.' : 'Cecilia Ponce Molinas'}
                 </h1>
                 <h2 className={"mt-2 font-medium transition-all duration-1000 " + (isBrokenUI ? "text-sm text-red-600" : "text-base sm:text-lg text-zinc-500 tracking-tight")}>
@@ -611,12 +687,23 @@ export default function App() {
                 </h2>
               </div>
               
-              <div className={"mt-5 md:mt-0 flex flex-col gap-1.5 text-xs transition-all duration-1000 " + (isBrokenUI ? "text-red-700 font-mono items-start md:items-end" : "text-zinc-500 md:items-end")}>
-                <span className="flex items-center gap-2"><MapPin size={14} className={isBrokenUI ? "text-red-500 shrink-0" : "text-zinc-400 shrink-0"} /> {isBrokenUI ? 'Undefined Location' : 'Barcelona, Spain / Remote'}</span>
-                <span className="flex items-center gap-2"><Phone size={14} className={isBrokenUI ? "text-red-500 shrink-0" : "text-zinc-400 shrink-0"} /> {isBrokenUI ? '555-0000-ERROR' : '+34 670476830 | +34 910052989'}</span>
-                <span className="flex items-center gap-2"><Mail size={14} className={isBrokenUI ? "text-red-500 shrink-0" : "text-zinc-400 shrink-0"} /> {isBrokenUI ? 'null@undefined.com' : 'cecilia.poncemolinas@gmail.com'}</span>
+              <div className={"mt-5 md:mt-0 flex flex-col gap-2 transition-all duration-1000 " + (isBrokenUI ? "text-red-700 font-mono items-start md:items-end text-xs" : "text-zinc-700 md:items-end text-sm")}>
+                <span className="flex items-center gap-2 font-medium">
+                  <MapPin size={16} className={isBrokenUI ? "text-red-500 shrink-0" : "text-indigo-500 shrink-0"} /> 
+                  {isBrokenUI ? 'Undefined Location' : 'Barcelona, Spain / Remote'}
+                </span>
+                <span className="flex items-center gap-2 font-medium group">
+                  <Phone size={16} className={isBrokenUI ? "text-red-500 shrink-0" : "text-indigo-500 shrink-0 animate-[bounce_3s_infinite] group-hover:scale-110 transition-transform"} /> 
+                  {isBrokenUI ? '555-0000-ERROR' : '+34 910052989'}
+                </span>
+                <a href="mailto:cecilia.poncemolinas@gmail.com" className={"flex items-center gap-2 font-medium transition-colors group " + (isBrokenUI ? "" : "hover:text-indigo-600")}>
+                  <Mail size={16} className={isBrokenUI ? "text-red-500 shrink-0" : "text-indigo-500 shrink-0 animate-[pulse_2s_infinite] group-hover:scale-110 transition-transform"} /> 
+                  {isBrokenUI ? 'null@undefined.com' : 'cecilia.poncemolinas@gmail.com'}
+                </a>
                 {!isBrokenUI && (
-                  <span className="flex items-center gap-2"><Globe size={14} className="text-zinc-400 shrink-0" /> European Citizen</span>
+                  <span className="flex items-center gap-2 text-zinc-500 text-xs mt-1">
+                    <Globe size={14} className="text-zinc-400 shrink-0" /> European Citizen
+                  </span>
                 )}
               </div>
             </header>
@@ -655,32 +742,32 @@ export default function App() {
 
               <div className="space-y-8 print:space-y-6">
                 {fullExperience.map((job, i) => (
-                  <div key={i} className={"relative " + (isBrokenUI && i > 0 ? "hidden" : "print:break-inside-avoid")}>
+                  <div key={i} className={"relative " + (isBrokenUI && i > 0 ? "hidden" : "animate-in fade-in slide-in-from-bottom-2 duration-500 print:break-inside-avoid")}>
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1.5">
                       <h4 className={"font-semibold text-sm sm:text-base " + (isBrokenUI ? "text-red-800 font-mono" : "text-zinc-900")}>
                         {isBrokenUI ? 'Manual Tester' : job.role}
                       </h4>
-                      <span className={"text-[11px] sm:text-xs font-medium mt-1 sm:mt-0 tabular-nums tracking-wide " + (isBrokenUI ? "text-red-500" : "text-zinc-400")}>
+                      <span className={"text-[11px] sm:text-xs font-medium mt-1 sm:mt-0 tabular-nums tracking-wide px-2.5 py-1 rounded " + (isBrokenUI ? "bg-red-50 text-red-500" : "bg-zinc-50 text-zinc-500")}>
                         {isBrokenUI ? '1990 - 1991' : job.date}
                       </span>
                     </div>
-                    <h5 className={"text-xs sm:text-[13px] font-medium mb-3 " + (isBrokenUI ? "text-red-400" : "text-zinc-500")}>
+                    <h5 className={"text-xs sm:text-[13px] font-medium mb-3 tracking-tight " + (isBrokenUI ? "text-red-400" : "text-indigo-600 uppercase")}>
                       {isBrokenUI ? 'Unknown Corp' : job.company}
                     </h5>
                     {!isBrokenUI && (
                       <>
-                        <ul className="space-y-2">
+                        <ul className="space-y-2 mb-4">
                           {job.details.map((detail, j) => (
                             <li key={j} className="text-[13px] sm:text-sm text-zinc-600 flex items-start gap-2.5 leading-relaxed font-light">
-                              <span className="w-1 h-1 rounded-full bg-zinc-300 mt-2 shrink-0"></span>
+                              <span className="w-1 h-1 rounded-full bg-indigo-200 mt-2 shrink-0 border border-indigo-200"></span>
                               <span>{detail}</span>
                             </li>
                           ))}
                         </ul>
                         {job.tags && job.tags.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-3 print:mt-2">
-                            {job.tags.map(tag => (
-                              <span key={tag} className="px-2 py-0.5 bg-sky-50 text-sky-700 rounded text-[10px] sm:text-xs font-medium border border-sky-200/60">
+                            {job.tags.map((tag, tid) => (
+                              <span key={tid} className="px-3 py-1 bg-sky-50 text-sky-700 rounded-md text-[10px] sm:text-[11px] font-bold border border-sky-100 tracking-tight uppercase">
                                 {tag}
                               </span>
                             ))}
@@ -694,131 +781,93 @@ export default function App() {
             </section>
 
             {/* EDUCATION & SKILLS */}
-            <section className={"relative z-10 grid lg:grid-cols-2 gap-8 transition-all duration-1000 tech-stack-container print:break-inside-avoid " + (isBrokenUI ? "opacity-0 h-0 overflow-hidden" : "opacity-100 h-auto")}>
-              <div>
-                <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Education</h3>
-                <ul className="space-y-4">
-                  <li>
-                    <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block">Professional Testing Master</strong>
-                    <span className="text-xs text-zinc-500">Universidad Tecnológica Nacional (Oct 2024)</span>
-                  </li>
-                  <li>
-                    <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block">Product Owner & SCRUM Manager</strong>
-                    <span className="text-xs text-zinc-500">PUE Training Center (Feb 2023)</span>
-                  </li>
-                  <li>
-                    <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block">Testing Introduction</strong>
-                    <span className="text-xs text-zinc-500">Programa Empleartec IDITS (Aug-Oct 2014)</span>
-                  </li>
-                  <li>
-                    <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block">PHP Advance</strong>
-                    <span className="text-xs text-zinc-500">Becas Control Program, IDITS (Oct-Dec 2012)</span>
-                  </li>
-                  <li>
-                    <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block">JAVA SE - Sun Microsystem</strong>
-                    <span className="text-xs text-zinc-500">Universidad Tecnológica Nacional (Aug 2010-Apr 2011)</span>
-                  </li>
-                  <li>
-                    <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block">Tecnicatura Universitaria en Web</strong>
-                    <span className="text-xs text-zinc-500">Univ. Nacional de San Luis (2009-2011)</span>
-                  </li>
-                </ul>
-
-                <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6 mt-10">Certifications</h3>
-                <ul className="space-y-4">
-                  <li>
-                    <a href="https://www.udemy.com/certificate/UC-2ca81437-73f0-4404-98d1-22befd4b7a8b/" target="_blank" rel="noopener noreferrer" className="group">
-                      <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                        Generative AI for QA Professionals & Software Testers <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
-                      </strong>
-                    </a>
-                    <span className="text-xs text-zinc-500 block mt-0.5">Udemy (Mar 2025) • ID: UC-2ca81437...</span>
-                  </li>
-                  <li>
-                    <a href="https://scrummanager.com/website/c/verify-cert.php?code=6401aa48b79148.88104918" target="_blank" rel="noopener noreferrer" className="group">
-                      <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                        Scrum Manager <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
-                      </strong>
-                    </a>
-                    <span className="text-xs text-zinc-500 block mt-0.5">Scrum Manager (Mar 2023) • ID: 43106</span>
-                  </li>
-                  <li>
-                    <a href="https://alumno.dexs.es/certificados/comprobar/f86d86be9d8fe91888d42f726b3a1f0b?embed=1&og=1" target="_blank" rel="noopener noreferrer" className="group">
-                      <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                        ICCD, CT, monitorización continua <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
-                      </strong>
-                    </a>
-                    <span className="text-xs text-zinc-500 block mt-0.5">DEXS (Apr 2022) • ID: f86d86be...</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Tech Stack & Tools</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['WebdriverIO', 'Cypress', 'Playwright', 'Appium', 'Selenium', 'Cucumber (BDD)', 'TypeScript', 'JavaScript', 'Java', 'C#', 'PHP', 'MySQL', 'Vitest', 'xUnit', 'PHP Unit', 'TestNG', 'Karate', 'Jira', 'Xray', 'Jenkins', 'Gitlab CI', 'Sonarqube', 'Postman'].map(skill => (
-                    <span key={skill} className="px-2.5 py-1 bg-violet-50/80 border border-violet-200/60 rounded text-xs font-medium text-violet-700 print:border-none print:p-0 print:text-zinc-600 print:after:content-[',_'] print:last:after:content-['']">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-10">
-                  <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Featured Repositories</h3>
+            {!isBrokenUI && (
+              <section className="grid lg:grid-cols-2 gap-12 mb-14 border-t border-zinc-100 pt-12 relative z-10 tech-stack-container print:break-inside-avoid">
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8">Education & Certifications</h3>
                   <ul className="space-y-6">
-                    <li>
-                      <a href="https://github.com/qatransformation/playwright_cucumber_spanish" target="_blank" rel="noopener noreferrer" className="group">
-                        <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                          playwright_cucumber_spanish <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
+                    <li className="flex flex-col gap-1">
+                      <a href="https://www.udemy.com/certificate/UC-e21bf1b5-e85a-4d80-9a0b-fd3a73781371/" target="_blank" rel="noopener noreferrer" className="group">
+                        <strong className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors flex items-center gap-2">
+                          Playwright TypeScript: GenAI + MCP Servers + Cucumber BDD <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-all" />
                         </strong>
+                        <span className="text-xs text-zinc-500 italic">Udemy (Feb 2026) • ID: UC-e21bf1b5-e85a-4d80-9a0b-fd3a73781371</span>
                       </a>
-                      <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A Playwright automation framework integrated with Cucumber BDD, configured for Spanish language step definitions.</span>
-                      <div className="flex flex-wrap gap-1.5 mt-2">
-                        {['Playwright', 'Cucumber', 'TypeScript'].map(tag => (
-                          <span key={tag} className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-[10px] font-semibold border border-indigo-100">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                    </li>
+                    <li className="flex flex-col gap-1">
+                      <a href="https://www.udemy.com/certificate/UC-e21bf1b5-e85a-4d80-9a0b-fd3a73781371/" target="_blank" rel="noopener noreferrer" className="group">
+                        <strong className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors flex items-center gap-2">
+                          Playwright: Web Automation Testing with Java <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-all" />
+                        </strong>
+                        <span className="text-xs text-zinc-500 italic">Udemy • ID: UC-e21bf1b5...</span>
+                      </a>
+                    </li>
+                    <li className="flex flex-col gap-1">
+                      <a href="https://www.udemy.com/certificate/UC-2ca81437-73f0-4404-98d1-22befd4b7a8b/" target="_blank" rel="noopener noreferrer" className="group">
+                        <strong className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors flex items-center gap-2">
+                          Generative AI for QA Professionals (Udemy 2025) <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-all" />
+                        </strong>
+                        <span className="text-xs text-zinc-500 italic">Udemy (Mar 2025) • ID: UC-2ca81437...</span>
+                      </a>
+                    </li>
+                    <li className="flex flex-col gap-1">
+                      <a href="https://scrummanager.com/website/c/verify-cert.php?code=6401aa48b79148.88104918" target="_blank" rel="noopener noreferrer" className="group">
+                        <strong className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors flex items-center gap-2">
+                          Scrum Manager <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-all" />
+                        </strong>
+                        <span className="text-xs text-zinc-500 italic">Scrum Manager (Mar 2023) • ID: 43106</span>
+                      </a>
+                    </li>
+                    <li className="flex flex-col gap-1">
+                      <a href="https://alumno.dexs.es/certificados/comprobar/f86d86be9d8fe91888d42f726b3a1f0b?embed=1&og=1" target="_blank" rel="noopener noreferrer" className="group">
+                        <strong className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 transition-colors flex items-center gap-2">
+                          ICCD, CT, monitorización continua <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-all" />
+                        </strong>
+                        <span className="text-xs text-zinc-500 italic">DEXS (Apr 2022) • ID: f86d86be...</span>
+                      </a>
+                    </li>
+                    <li className="pt-2 border-t border-zinc-50">
+                      <strong className="text-[14px] font-bold text-zinc-900 block">Professional Testing Master</strong>
+                      <span className="text-xs text-zinc-500">Universidad Tecnológica Nacional (Oct 2024)</span>
                     </li>
                     <li>
-                      <a href="https://github.com/qatransformation/playwright_cucumber_pom" target="_blank" rel="noopener noreferrer" className="group">
-                        <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                          playwright_cucumber_pom <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
-                        </strong>
-                      </a>
-                      <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A robust Playwright testing framework implementing Cucumber BDD and the Page Object Model (POM) design pattern.</span>
-                      <div className="flex flex-wrap gap-1.5 mt-2">
-                        {['Playwright', 'Cucumber', 'TypeScript', 'POM'].map(tag => (
-                          <span key={tag} className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-[10px] font-semibold border border-indigo-100">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </li>
-                    <li>
-                      <a href="https://github.com/qatransformation/webdriverio-cucumber-pom-framework" target="_blank" rel="noopener noreferrer" className="group">
-                        <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
-                          webdriverio-cucumber-pom-framework <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
-                        </strong>
-                      </a>
-                      <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A complete WebdriverIO automation framework utilizing Cucumber for BDD and adhering to the Page Object Model (POM) architecture.</span>
-                      <div className="flex flex-wrap gap-1.5 mt-2">
-                        {['WebdriverIO', 'Cucumber', 'TypeScript', 'POM'].map(tag => (
-                          <span key={tag} className="px-2 py-0.5 bg-indigo-50 text-indigo-600 rounded text-[10px] font-semibold border border-indigo-100">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                      <strong className="text-[14px] font-bold text-zinc-900 block">Tecnicatura Universitaria en Web</strong>
+                      <span className="text-xs text-zinc-500">Univ. Nacional de San Luis (2009-2011)</span>
                     </li>
                   </ul>
                 </div>
-              </div>
-            </section>
+                <div>
+                  <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8">Global Tech Stack</h3>
+                  <div className="flex flex-wrap gap-2.5">
+                    {['WebdriverIO', 'Cypress', 'Playwright', 'Appium', 'Selenium', 'Cucumber (BDD)', 'TypeScript', 'JavaScript', 'Java', 'C#', 'PHP', 'MySQL', 'Vitest', 'xUnit', 'PHP Unit', 'TestNG', 'Karate', 'Jira', 'Xray', 'Jenkins', 'Gitlab CI', 'Sonarqube', 'Postman'].map((skill, sid) => (
+                      <span key={sid} className="px-3 py-1.5 bg-violet-50 border border-violet-100 rounded-md text-[11px] font-bold text-violet-700 tracking-tight uppercase">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8 mt-12">Featured Repositories</h3>
+                  <ul className="space-y-8">
+                    <li>
+                      <a href="https://github.com/qatransformation/playwright_cucumber_pom" target="_blank" rel="noopener noreferrer" className="group block border-l-2 border-indigo-100 pl-4 hover:border-indigo-400 transition-all">
+                         <span className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 flex items-center gap-2">playwright_cucumber_pom <ExternalLink size={14}/></span>
+                         <span className="text-[12px] text-zinc-500 block mt-2 font-light">Playwright testing framework implementing Cucumber BDD and Page Object Model (POM) pattern. Optimized for scalability.</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://github.com/qatransformation/webdriverio-cucumber-pom-framework" target="_blank" rel="noopener noreferrer" className="group block border-l-2 border-indigo-100 pl-4 hover:border-indigo-400 transition-all">
+                         <span className="text-[14px] font-bold text-zinc-900 group-hover:text-indigo-600 flex items-center gap-2">webdriverio-cucumber-pom-framework <ExternalLink size={14}/></span>
+                         <span className="text-[12px] text-zinc-500 block mt-2 font-light">WebdriverIO framework utilizing Cucumber for BDD and adhering to POM architecture with TypeScript integration.</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </section>
+            )}
 
             {/* FREELANCE PROJECT & VIDEO */}
             <section className={`relative z-10 mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-zinc-200 transition-all duration-1000 print:break-inside-avoid ${isBrokenUI ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto'}`}>
-              <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Freelance Project Showcase</h3>
+              <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8 flex items-center gap-2"><PlayCircle size={16}/> Freelance Project Showcase</h3>
               <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-6">
                  <h4 className="font-semibold text-zinc-900 text-sm sm:text-base mb-2">QA Transformation Initiatives</h4>
                  <p className="text-xs sm:text-sm text-zinc-600 mb-6 leading-relaxed">
@@ -838,6 +887,38 @@ export default function App() {
                  </div>
               </div>
             </section>
+
+            {/* FINAL CONTACT FOOTER */}
+            {!isBrokenUI && phase === 'FIXED' && (
+              <section ref={bottomRef} className="relative z-10 mt-16 pt-12 border-t-2 border-indigo-100 flex flex-col items-center animate-in slide-in-from-bottom-8 duration-1000 print:hidden">
+                <h3 className="text-xs font-bold tracking-[0.3em] uppercase text-indigo-900 mb-8 bg-indigo-50 px-6 py-2 rounded-full">
+                  Get in touch
+                </h3>
+                <div className="flex flex-col sm:flex-row items-center gap-10 text-zinc-700">
+                  <a href="mailto:cecilia.poncemolinas@gmail.com" className="flex flex-col items-center gap-3 group transition-transform hover:-translate-y-1">
+                    <div className="w-14 h-14 bg-white border border-indigo-100 rounded-full flex items-center justify-center shadow-md group-hover:border-indigo-400 group-hover:shadow-lg transition-all">
+                      <Mail size={22} className="text-indigo-600 animate-pulse" />
+                    </div>
+                    <span className="text-sm font-medium">cecilia.poncemolinas@gmail.com</span>
+                  </a>
+                  <div className="flex flex-col items-center gap-3 group">
+                    <div className="w-14 h-14 bg-white border border-indigo-100 rounded-full flex items-center justify-center shadow-md">
+                      <Phone size={22} className="text-indigo-600 animate-bounce" />
+                    </div>
+                    <span className="text-sm font-medium">+34 910052989</span>
+                  </div>
+                  <a href="https://www.linkedin.com/in/ceciliaponce/" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-3 group transition-transform hover:-translate-y-1">
+                    <div className="w-14 h-14 bg-white border border-indigo-100 rounded-full flex items-center justify-center shadow-md group-hover:border-blue-400 group-hover:shadow-lg transition-all">
+                      <ExternalLink size={22} className="text-blue-600" />
+                    </div>
+                    <span className="text-sm font-medium">LinkedIn Profile</span>
+                  </a>
+                </div>
+                <div className="mt-10 flex items-center gap-2 text-zinc-400 text-xs italic">
+                  <Globe size={14} /> European Citizen
+                </div>
+              </section>
+            )}
 
           </main>
         </div>
@@ -978,7 +1059,7 @@ export default function App() {
           </div>
         )}
 
-        {/* Visualizador IDE Modal */}
+        {/* Visualizador IDE Modal - FIXED JSX Parsing Errors */}
         {phase === 'IDE_FIX' && (
           <div className="fixed inset-0 md:left-[280px] bg-black/40 backdrop-blur-md z-[80] flex items-center justify-center p-2 sm:p-4 print:hidden">
             <div className="bg-[#09090b] border border-white/10 rounded-xl shadow-2xl w-[95vw] md:w-full max-w-4xl h-[65vh] flex flex-col overflow-hidden animate-in zoom-in-95">
@@ -998,11 +1079,11 @@ export default function App() {
                     <>
                       <div className="flex line-through opacity-40 w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">42</span>
-                        <span className="text-red-400">- &lt;h1&gt;Sizilia Ponse M.&lt;/h1&gt;</span>
+                        <span className="text-red-400">- {"<h1>Sizilia Ponse M.</h1>"}</span>
                       </div>
                       <div className="flex mb-4 line-through opacity-40 w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">43</span>
-                        <span className="text-red-400">- &lt;h2&gt;Junior Manual Tester&lt;/h2&gt;</span>
+                        <span className="text-red-400">- {"<h2>Junior Manual Tester</h2>"}</span>
                       </div>
                     </>
                   )}
@@ -1010,11 +1091,11 @@ export default function App() {
                      <>
                       <div className="flex w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">42</span>
-                        <span className="text-zinc-500">- &lt;h1&gt;Sizilia Ponse M.&lt;/h1&gt;</span>
+                        <span className="text-zinc-500">- {"<h1>Sizilia Ponse M.</h1>"}</span>
                       </div>
                       <div className="flex mb-4 w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">43</span>
-                        <span className="text-zinc-500">- &lt;h2&gt;Junior Manual Tester&lt;/h2&gt;</span>
+                        <span className="text-zinc-500">- {"<h2>Junior Manual Tester</h2>"}</span>
                       </div>
                      </>
                   )}
@@ -1023,11 +1104,11 @@ export default function App() {
                     <>
                       <div className="bg-emerald-900/10 flex animate-in fade-in slide-in-from-left-4 duration-300 w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">42</span>
-                        <span className="text-emerald-400">+ &lt;h1&gt;Cecilia Ponce Molinas&lt;/h1&gt;</span>
+                        <span className="text-emerald-400">+ {"<h1>Cecilia Ponce Molinas</h1>"}</span>
                       </div>
                       <div className="bg-emerald-900/10 flex mb-6 animate-in fade-in slide-in-from-left-4 duration-300 w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">43</span>
-                        <span className="text-emerald-400">+ &lt;h2&gt;QA Architect / QA Lead / QA Automation&lt;/h2&gt;</span>
+                        <span className="text-emerald-400">+ {"<h2>QA Architect / QA Lead / QA Automation</h2>"}</span>
                       </div>
                     </>
                   )}
@@ -1040,7 +1121,7 @@ export default function App() {
                       </div>
                       <div className="flex mb-4 line-through opacity-40 w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">120</span>
-                        <span className="text-red-400">- {/* &lt;TechStackSection /&gt; */}</span>
+                        <span className="text-red-400">- {"{/* <TechStackSection /> */}"}</span>
                       </div>
                     </>
                   )}
@@ -1052,7 +1133,7 @@ export default function App() {
                       </div>
                       <div className="flex mb-4 w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">120</span>
-                        <span className="text-zinc-500">- {/* &lt;TechStackSection /&gt; */}</span>
+                        <span className="text-zinc-500">- {"{/* <TechStackSection /> */}"}</span>
                       </div>
                     </>
                   )}
@@ -1065,7 +1146,7 @@ export default function App() {
                       </div>
                       <div className="bg-emerald-900/10 flex animate-in fade-in slide-in-from-left-4 duration-300 w-max min-w-full">
                         <span className="text-zinc-700 w-8 shrink-0 select-none">120</span>
-                        <span className="text-emerald-400">+ &lt;TechStackSection isVisible={true} /&gt;</span>
+                        <span className="text-emerald-400">+ {"<TechStackSection isVisible={true} />"}</span>
                       </div>
                     </>
                   )}
