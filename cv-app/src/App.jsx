@@ -1,12 +1,3 @@
-/**
- * PERSISTENCE RULE:
- * 1. DO NOT remove, truncate or summarize the 'fullExperience' data array.
- * 2. DO NOT remove UI components (Terminal, Gherkin Modal, Jira Ticket, IDE Fix).
- * 3. ALWAYS maintain technical fixes (special characters escaping in BDD scenarios).
- * 4. CONSULT before modifying the structure of existing professional data.
- * 5. MAINTAIN the full length of the file (approx. 1200 lines) to ensure all descriptive details are present.
- */
-
 import React, { useState, useEffect, useRef } from 'react';
 import { Bot, Terminal, ShieldCheck, ChevronRight, Mail, Phone, MapPin, Globe, GitCommit, CheckCircle, FileCode, CheckCircle2, CircleDashed, Code2, LayoutTemplate, AlertTriangle, Bug, Trello, UserPlus, PlayCircle, BadgeCheck, Activity, Loader2, Download, XCircle, FastForward, ExternalLink, Eye, ArrowDownCircle, ArrowUpCircle } from 'lucide-react';
 
@@ -469,11 +460,27 @@ export default function App() {
       break;
   }
 
-  const containerClasses = "min-h-screen font-sans overflow-x-hidden flex transition-all duration-1000 " + (isBrokenUI ? "bg-zinc-50" : "bg-[#fafafa]");
+  const containerClasses = "min-h-screen font-sans overflow-x-hidden flex transition-all duration-1000 print:block print:min-h-0 print:h-auto print:overflow-visible " + (isBrokenUI ? "bg-zinc-50" : "bg-[#fafafa]");
 
   return (
     <div className={containerClasses} ref={topRef}>
       
+      <style type="text/css" media="print">
+        {`
+          @page { size: auto; margin: 15mm; }
+          html, body, #root { 
+            height: auto !important; 
+            min-height: auto !important; 
+            overflow: visible !important; 
+            display: block !important;
+          }
+          .print\\:break-inside-avoid {
+            page-break-inside: avoid;
+            break-inside: avoid;
+          }
+        `}
+      </style>
+
       {/* Dynamic Smart Navigation Button */}
       {!isBrokenUI && phase === 'FIXED' && (
         <button
@@ -640,10 +647,10 @@ export default function App() {
       )}
 
       {/* --- MAIN CONTENT WRAPPER --- */}
-      <div className="flex-1 md:ml-[280px] relative flex justify-center pb-32 print:m-0 print:p-0 print:pb-0">
+      <div className="flex-1 md:ml-[280px] relative flex justify-center pb-32 print:m-0 print:p-0 print:pb-0 print:block print:w-full print:h-auto print:overflow-visible">
         
         {/* Main CV Container */}
-        <div className="w-full max-w-5xl xl:max-w-6xl transition-all duration-500 relative my-8 sm:my-16 px-4 sm:px-8 print:my-0 print:px-0 print:w-full print:max-w-none">
+        <div className="w-full max-w-5xl xl:max-w-6xl transition-all duration-500 relative my-8 sm:my-16 px-4 sm:px-8 print:my-0 print:px-0 print:w-full print:max-w-none print:block print:h-auto print:overflow-visible">
           
           {/* Header Dashboard superior */}
           {!isBrokenUI && phase === 'FIXED' && (
@@ -668,7 +675,7 @@ export default function App() {
           )}
 
           {/* CV Content - Modern Minimalist Paper */}
-          <main className={"p-6 sm:p-12 h-full relative transition-all duration-1000 print:shadow-none print:border-none print:p-0 print:bg-transparent " + (isBrokenUI ? "bg-[#f4f4f5] grayscale-[50%] contrast-125 opacity-90 blur-[0.5px]" : "bg-white border border-zinc-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl")}>
+          <main className={"p-6 sm:p-12 h-full relative transition-all duration-1000 print:shadow-none print:border-none print:p-0 print:bg-transparent print:h-auto print:block print:overflow-visible " + (isBrokenUI ? "bg-[#f4f4f5] grayscale-[50%] contrast-125 opacity-90 blur-[0.5px]" : "bg-white border border-zinc-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl")}>
             
             {/* HEADER */}
             <header className={"relative z-10 mb-10 sm:mb-12 flex flex-col md:flex-row md:justify-between md:items-start transition-all duration-1000 " + (isBrokenUI ? "border-l-4 border-red-500 pl-4 -rotate-1 skew-x-1 print:border-none print:pl-0" : "print:mb-8")}>
