@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Terminal, ShieldCheck, Mail, Phone, MapPin, Globe, CheckCircle, FileCode, CheckCircle2, CircleDashed, Code2, LayoutTemplate, AlertTriangle, Bug, Trello, Activity, Loader2, Download, XCircle, FastForward } from 'lucide-react';
+import { Bot, Terminal, ShieldCheck, ChevronRight, Mail, Phone, MapPin, Globe, GitCommit, CheckCircle, FileCode, CheckCircle2, CircleDashed, Code2, LayoutTemplate, AlertTriangle, Bug, Trello, UserPlus, PlayCircle, BadgeCheck, Activity, Loader2, Download, XCircle, FastForward, ExternalLink } from 'lucide-react';
 
 export default function App() {
   const [phase, setPhase] = useState('FAILED_ALERT'); 
@@ -13,34 +13,62 @@ export default function App() {
 
   const endOfLogsRef = useRef(null);
 
+  const cvContext = `
+    Name: Cecilia Ponce Molinas.
+    Roles: QA Architect, QA Lead, QA Automation Specialist.
+    Location: Barcelona, Spain / Remote (European Citizen).
+    Contact: cecilia.poncemolinas@gmail.com, +34 670476830.
+    Experience & Tools: WebdriverIO (TypeScript), Cypress (TypeScript), Playwright (TypeScript), Appium, Selenium, Cucumber (BDD), TypeScript, JavaScript, Java, C#, PHP, MySQL, Vitest, xUnit, PHP Unit, TestNG, Karate, Jira, Xray, Jenkins, Gitlab CI, Sonarqube, Postman, GitHub Copilot, Google Gemini.
+    Summary: Senior QA Architect and Test Automation Specialist with a comprehensive background in software development and quality engineering. Proven track record of defining and leading scalable QA strategies for international, cross-functional teams across the US, Canada, and Europe. Adept at bridging the gap between business objectives and technology execution, establishing rigorous quality gates, and fostering CI/CD best practices. Holistic perspective gained from roles as a Business Analyst, Full-Stack Developer, and QA Lead.
+    Recent Jobs:
+    - AYESA (Client BBVA, Apr 2024-Present): QA Automation Consultant. Shaped gamification projects, tracked critical apps using AI (Copilot, Gemini), and conducted technical 'Garages'.
+    - TOOLSGROUP (Dec 2023-Mar 2024): QA Architect / QA Lead Scrum Master.
+    - AT Sistemas (Feb 2022-Mar 2023): QA Architect. Technical Lead.
+    - ZURICH ESPAÑA (Mar 2021-Feb 2022): QA Manager / QA Automation.
+    - Sopra Steria (Jul 2019-Mar 2021): QA Lead and QA Automation Tech Lead.
+    - Altran Innovation (Jul 2017-Jul 2019): QA Lead. Automated tester.
+    - GLOBANT (Mar 2015-Jul 2017): Manual Tester, Automated Testing.
+    - FREELANCE (Jan 2013-Present): Developer Frontend.
+    - PROAGILE S.A (Apr 2013-Feb 2015): Functional Analyst. Developer Back. QA Tester.
+    - Learning Latin America (Jan 2012-Nov 2013): Team Leader. Developer. Functional Testing.
+    - Operadores Mendoza Viajes (Jan 2011-Jan 2012): Front end and Back end. Functional Testing.
+    Education: Professional Testing Master (UTN 2024), Product Owner (PUE 2023), Testing Introduction (IDITS 2014), PHP Advance (IDITS 2012), JAVA SE (UTN 2011), Tecnicatura Universitaria en Web (UNSL 2009-2011).
+    Certifications: Generative AI for QA Professionals and Software Testers (Udemy 2025), Scrum Manager (2023), ICCD, CT, monitorización continua (DEXS 2022).
+    Featured GitHub Repositories: playwright_cucumber_spanish, playwright_cucumber_pom, webdriverio-cucumber-pom-framework.
+  `;
+
   const fullExperience = [
     { 
       role: "QA Automation Consultant | Freelance", company: "AYESA (Customer: BBVA España)", date: "Apr 2024 - To Date", 
       details: [
-        "Expert testing consultant. Help to critical project teams to start with automation strategy.", 
-        "Create POCs for frontend automation using the typescript framework developed for BBVA (based on WebdriverIo, Cucumber).", 
-        "Contact with the different teams to define tools for unit testing. The technologic stack is wide: frontend and backend. Vitest, PHP Unit, etc.",
-        "Backend testing using frameworks developed for the institution. Configuration of main dashboard.",
-        "Configuration of pipelines.",
-        "Develop of automated test for mobile using typescript, appium on Saucelabs.",
-        "Workshop and training on testing concepts and test automation."
-      ] 
+        "Expert testing consultant supporting critical project teams in defining and launching their automation strategies.",
+        "Spearheaded a gamification project designed to improve engagement and optimize key metrics across backlog management, testing, and CI/CD pipelines.",
+        "Assisted in tracking and auditing critical applications to ensure strict adherence to quality processes throughout their entire lifecycle, heavily leveraging AI tools (GitHub Copilot, Google Gemini) to accelerate analysis and reporting workflows.",
+        "Designed continuous improvement strategies to adapt to internal testing regulations and process playbooks, covering the entire lifecycle from feature design to functionality deployment.",
+        "Conducted 'Garages' (short-format technical talks and workshops) to train teams on the standardized quality assurance processes mandated by the bank.",
+        "Created POCs for frontend automation using the custom TypeScript framework developed for BBVA (based on WebdriverIO (TypeScript), Cucumber).", 
+        "Collaborated with diverse teams to define unit testing tools across a wide technological stack (Vitest, PHPUnit, etc.).",
+        "Conducted backend testing using proprietary institutional frameworks and configured main monitoring dashboards.",
+        "Developed automated tests for mobile using TypeScript and Appium on SauceLabs, and configured CI/CD pipelines."
+      ],
+      tags: ["TypeScript", "WebdriverIO", "Cucumber", "Vitest", "PHPUnit", "Appium", "SauceLabs", "GitHub Copilot", "Google Gemini"]
     },
     { 
-      role: "QA Architect / QA Lead / Scrum Master", company: "TOOLSGROUP", date: "Apr 2023 - Mar 2024", 
+      role: "QA Architect / QA Lead / Scrum Master", company: "TOOLSGROUP", date: "Dec 2023 - Mar 2024", 
       details: [
         "Define QA Strategy for the differente company projects.", 
         "Contributes on Product Roadmap Planning.",
         "Supports the SCRUM team on test case design in order to maximise test coverage for the most critical features of the system.",
         "Writing documentation for automated processes including test plans, test procedures, and test cases when required.",
-        "Investigate and define the best automation framework in base the project requeriments.",
+        "Conducted a comprehensive study of automation frameworks, comparing WebdriverIO (TypeScript) and Playwright (TypeScript). Selected and implemented Playwright (TypeScript) with Cucumber as the standard framework for automating projects.",
         "QA certification authority.",
         "Provides feedback on QA team performance (when applicable).",
         "Cooperates to define career path for QA engineers.",
         "Helps to train QA team.",
         "Engaged on recruitment.",
         "Collaborate with Producto Owner and team to improve the process. Define metrics and create reports for the different projects."
-      ] 
+      ],
+      tags: ["QA Strategy", "Scrum", "Playwright", "Cucumber", "TypeScript", "Automation Frameworks", "Metrics", "Team Leadership"]
     },
     { 
       role: "QA Architect / Technical Lead", company: "AT Sistemas (Customer: AT Sistemas & El Corte Inglés)", date: "Feb 2022 - Mar 2023", 
@@ -55,7 +83,8 @@ export default function App() {
         "Review the different daily executions to ensure that you meet the quality gates defined for ECI.",
         "Propose improvements for the processes.",
         "Audit for an external application: review of requirements and documentation, evaluate the development process, and evaluate the QA tasks. Generate a report to define the price applications according to the quality."
-      ] 
+      ],
+      tags: ["QA Architecture", "Quality Gates", "Audits", "Pre-sales", "Process Improvement"]
     },
     { 
       role: "QA Manager / QA Automation", company: "ZURICH ESPAÑA", date: "Mar 2021 - Feb 2022", 
@@ -72,9 +101,10 @@ export default function App() {
         "Ensure quality and sustainability of production processes.",
         "Investigate customers' needs and wanted and developed a strategy for meeting their needs.",
         "Communicate with the Product Development team on a daily basis.",
-        "Define the automation framework for the different projects according to the requirements and resources.",
+        "Define the automation framework for the different projects according to the requirements and resources (Cypress with TypeScript, WebdriverIO with TypeScript).",
         "Develop and dictates formation course about QA and how to work in an agile environment for gerent, product managers, and other important personnel."
-      ] 
+      ],
+      tags: ["Cypress", "WebdriverIO", "Gherkin", "TypeScript", "QA Management"]
     },
     { 
       role: "QA Lead / QA Automation Tech Lead", company: "Sopra Steria (Customer: Sopra, Nestlé, AXA, Zurich)", date: "Jul 2019 - Mar 2021", 
@@ -87,7 +117,8 @@ export default function App() {
         "Run different types of testing cross-browser and multiplatform: Win, OS, Android, iPhone (exploratory, regression, smoke, integration).",
         "Design QA strategy for the different chatbots used in the project, challenge: multiples market, channels and languages.",
         "POC for client: Automation framework with java, spring boot, cucumber, docker and jenkings. Configuration of Jira with Xray to automate the process of implement new test cases using BDD."
-      ] 
+      ],
+      tags: ["Java", "Spring Boot", "WebdriverIO", "TypeScript", "Cucumber", "Docker", "Jenkins", "Jira", "Xray", "BDD"]
     },
     { 
       role: "QA Lead / Functional & Automated Tester", company: "Altran Innovation (Customer: ImaginBank, Axa, Caixa Bank)", date: "Jul 2017 - Jul 2019", 
@@ -107,7 +138,8 @@ export default function App() {
         "Audit the testing process of the different teams that are developing the application 'Caixa Bank'.",
         "Testing of the mobile applications for different OS: android, iOS, and windows.",
         "Project estimation and develop test script using Selenium, Java, TestNG (page factory and page object pattern)."
-      ] 
+      ],
+      tags: ["Appium", "Java", "TestNG", "Selenium", "iOS", "Android", "Kanban"]
     },
     { 
       role: "Manual Tester, Automated Testing", company: "GLOBANT (Customer: HUB International, Burson-Martseller)", date: "Mar 2015 - Jul 2017", 
@@ -120,7 +152,8 @@ export default function App() {
         "Testing multi-browser and multi-platform. Mobile testing with different devices (android, iPhone).",
         "Develop automated tests for the smoke test, using Selenium Webdriver, C# (POM - PF).",
         "Some relevant projects in this account: New interactive map of San Francisco Airport. PVA, accessibility testing for the campaign for Paralyzed Veterans of America."
-      ] 
+      ],
+      tags: ["Selenium Webdriver", "C#", "Mobile Testing", "Accessibility"]
     },
     { 
       role: "Developer Frontend", company: "FREELANCE", date: "Jan 2013 - To date", 
@@ -129,7 +162,8 @@ export default function App() {
         "Develop web application software.",
         "Responsive web design.", 
         "Responsive email marketing."
-      ] 
+      ],
+      tags: ["WordPress", "Joomla", "Frontend", "Responsive Design"]
     },
     { 
       role: "Functional Analyst / Developer Back / QA Tester", company: "PROAGILE S.A", date: "Apr 2013 - Feb 2015", 
@@ -143,7 +177,8 @@ export default function App() {
         "Selection and definition of test cases for smoke test.",
         "Reporting and defects trucking.",
         "Data preparation and Control results."
-      ] 
+      ],
+      tags: ["PHP", "MySQL", "JavaScript", "UAT", "Manual Testing"]
     },
     { 
       role: "Team Leader / Developer / Functional Testing", company: "Learning Latin America", date: "Jan 2012 - Nov 2013", 
@@ -155,7 +190,8 @@ export default function App() {
         "Develop of different interactive courses for the tool Enterprise Architect.",
         "Installation, configuration, and maintenance of the learning platform, courses, material, and students.",
         "Support for the different clients with Enterprise Architect."
-      ] 
+      ],
+      tags: ["Enterprise Architect", "E-learning", "Functional Testing", "Team Leadership"]
     },
     { 
       role: "Front end and Back end / Functional Testing", company: "Operadores Mendoza Viajes", date: "Jan 2011 - Jan 2012", 
@@ -166,7 +202,8 @@ export default function App() {
         "Design and execution of test cases.",
         "Reporting and defects tracking.",
         "Data Preparation and Control results."
-      ] 
+      ],
+      tags: ["Java", "JSP", "MVC", "SEO", "Functional Testing"]
     }
   ];
 
@@ -372,8 +409,10 @@ export default function App() {
       break;
   }
 
+  const containerClasses = "min-h-screen font-sans overflow-x-hidden flex transition-all duration-1000 " + (isBrokenUI ? "bg-zinc-50" : "bg-[#fafafa]");
+
   return (
-    <div className={`min-h-screen font-sans overflow-x-hidden flex transition-all duration-1000 ${isBrokenUI ? 'bg-zinc-50' : 'bg-[#fafafa]'}`}>
+    <div className={containerClasses}>
       
       {/* FLOATING SKIP BUTTON FOR IMPATIENT USERS */}
       {phase !== 'FIXED' && phase !== 'FAILED_ALERT' && (
@@ -424,7 +463,7 @@ export default function App() {
                   <div className="mt-0.5">
                     {statusIcon}
                   </div>
-                  <div className={`text-xs tracking-wide ${isCurrent ? 'text-zinc-100 font-medium' : isPast ? 'text-zinc-500' : 'text-zinc-700'}`}>
+                  <div className={"text-xs tracking-wide " + (isCurrent ? "text-zinc-100 font-medium" : isPast ? "text-emerald-500" : "text-zinc-700")}>
                     {step.label}
                   </div>
                 </div>
@@ -435,7 +474,7 @@ export default function App() {
 
         {/* Action Panel */}
         <div className="p-4 border-t border-white/5 print:hidden flex flex-col gap-2">
-          <div className={`p-4 rounded-lg border transition-all duration-300 bg-[#121214] ${isWaiting ? 'border-zinc-500 shadow-[0_0_15px_rgba(255,255,255,0.05)]' : 'border-white/5'}`}>
+          <div className={"p-4 rounded-lg border transition-all duration-300 bg-[#121214] " + (isWaiting ? "border-zinc-500 shadow-[0_0_15px_rgba(255,255,255,0.05)]" : "border-white/5")}>
             <div className="flex items-center gap-2 mb-3">
               {isWaiting ? (
                 <>
@@ -454,7 +493,7 @@ export default function App() {
                 </>
               )}
             </div>
-            <p className={`text-xs ${isWaiting ? 'text-zinc-300' : 'text-zinc-500'} leading-relaxed font-mono`}>
+            <p className={"text-xs leading-relaxed font-mono " + (isWaiting ? "text-zinc-300" : "text-zinc-500")}>
               {actionText}
             </p>
           </div>
@@ -516,16 +555,10 @@ export default function App() {
           )}
 
           {/* CV Content - Modern Minimalist Paper */}
-          <main className={`p-6 sm:p-12 h-full relative transition-all duration-1000 print:shadow-none print:p-0 
-            ${isBrokenUI 
-              ? 'bg-[#f4f4f5] grayscale-[50%] contrast-125 opacity-90 blur-[0.5px]' 
-              : 'bg-white border border-zinc-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl'}`}>
+          <main className={"p-6 sm:p-12 h-full relative transition-all duration-1000 print:shadow-none print:p-0 " + (isBrokenUI ? "bg-[#f4f4f5] grayscale-[50%] contrast-125 opacity-90 blur-[0.5px]" : "bg-white border border-zinc-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl")}>
             
             {/* HEADER */}
-            <header className={`
-              relative z-10 mb-10 sm:mb-12 flex flex-col md:flex-row md:justify-between md:items-start transition-all duration-1000
-              ${isBrokenUI ? 'border-l-4 border-red-500 pl-4 -rotate-1 skew-x-1 print:border-none print:pl-0' : 'print:mb-8'}
-            `}>
+            <header className={"relative z-10 mb-10 sm:mb-12 flex flex-col md:flex-row md:justify-between md:items-start transition-all duration-1000 " + (isBrokenUI ? "border-l-4 border-red-500 pl-4 -rotate-1 skew-x-1 print:border-none print:pl-0" : "print:mb-8")}>
               {isBrokenUI && (
                 <div className="absolute -top-4 -right-4 bg-red-500 text-white text-[9px] font-mono px-2 py-0.5 rounded-sm print:hidden">
                   ERR_DATA_CORRUPTION
@@ -533,15 +566,15 @@ export default function App() {
               )}
 
               <div>
-                <h1 className={`font-semibold tracking-tighter transition-all duration-1000 ${isBrokenUI ? 'text-2xl font-mono text-red-900 line-through profile-name' : 'text-3xl sm:text-5xl text-zinc-900 profile-name'}`}>
+                <h1 className={"font-semibold tracking-tighter transition-all duration-1000 " + (isBrokenUI ? "text-2xl font-mono text-red-900 line-through profile-name" : "text-3xl sm:text-5xl text-zinc-900 profile-name")}>
                   {isBrokenUI ? 'Sizilia Ponse M.' : 'Cecilia Ponce Molinas'}
                 </h1>
-                <h2 className={`mt-2 font-medium transition-all duration-1000 ${isBrokenUI ? 'text-sm text-red-600' : 'text-base sm:text-lg text-zinc-500 tracking-tight'}`}>
+                <h2 className={"mt-2 font-medium transition-all duration-1000 " + (isBrokenUI ? "text-sm text-red-600" : "text-base sm:text-lg text-zinc-500 tracking-tight")}>
                   {isBrokenUI ? 'Junior Manual Tester' : 'QA Architect / QA Lead / QA Automation'}
                 </h2>
               </div>
               
-              <div className={`mt-5 md:mt-0 flex flex-col gap-1.5 text-xs transition-all duration-1000 ${isBrokenUI ? 'text-red-700 font-mono items-start md:items-end' : 'text-zinc-500 md:items-end'}`}>
+              <div className={"mt-5 md:mt-0 flex flex-col gap-1.5 text-xs transition-all duration-1000 " + (isBrokenUI ? "text-red-700 font-mono items-start md:items-end" : "text-zinc-500 md:items-end")}>
                 <span className="flex items-center gap-2"><MapPin size={14} className={isBrokenUI ? "text-red-500 shrink-0" : "text-zinc-400 shrink-0"} /> {isBrokenUI ? 'Undefined Location' : 'Barcelona, Spain / Remote'}</span>
                 <span className="flex items-center gap-2"><Phone size={14} className={isBrokenUI ? "text-red-500 shrink-0" : "text-zinc-400 shrink-0"} /> {isBrokenUI ? '555-0000-ERROR' : '+34 670476830 | +34 910052989'}</span>
                 <span className="flex items-center gap-2"><Mail size={14} className={isBrokenUI ? "text-red-500 shrink-0" : "text-zinc-400 shrink-0"} /> {isBrokenUI ? 'null@undefined.com' : 'cecilia.poncemolinas@gmail.com'}</span>
@@ -552,8 +585,8 @@ export default function App() {
             </header>
 
             {/* SUMMARY */}
-            <section className={`relative z-10 mb-10 sm:mb-12 transition-all duration-1000 ${isBrokenUI ? 'opacity-70 translate-x-2' : ''}`}>
-              <h3 className={`text-xs font-semibold tracking-widest uppercase mb-4 flex items-center gap-2 ${isBrokenUI ? 'text-red-500' : 'text-zinc-900'}`}>
+            <section className={"relative z-10 mb-10 sm:mb-12 transition-all duration-1000 " + (isBrokenUI ? "opacity-70 translate-x-2" : "")}>
+              <h3 className={"text-xs font-semibold tracking-widest uppercase mb-4 flex items-center gap-2 " + (isBrokenUI ? "text-red-500" : "text-zinc-900")}>
                 {isBrokenUI ? 'ERR_SUMMARY' : 'Career Summary'}
               </h3>
               {isBrokenUI ? (
@@ -565,47 +598,58 @@ export default function App() {
                 <div className="space-y-4 text-[13px] sm:text-sm text-zinc-600 leading-relaxed font-light">
                   <p className="italic font-medium text-zinc-800">"growth + learning = happiness"</p>
                   <p>
-                    Quality assurance architect and test automation specialist with a background in development and website design. I initiated this passionate world in 1996. My work last year involved remote and international teams and clients from the United States, Canada, Spain, Italy, Switzerland, and France.
+                    Senior QA Architect and Test Automation Specialist with a comprehensive background in software development and quality engineering. Proven track record of defining and leading scalable QA strategies for international, cross-functional teams across the US, Canada, and Europe.
                   </p>
                   <p>
-                    Part of my daily routine involves participating in meetings to understand the client's requirements and expectations, preparing demos, reporting bugs, and collaborating with the development team. My experience includes meeting with clients to clarify their requirements and suggesting improvements, creating documentation and various documents and reports, being involved in pre-sales for different clients, and preparing for the QA team.
+                    Adept at bridging the gap between business objectives and technology execution. My expertise encompasses designing modern testing frameworks from scratch, leading technical proposals, establishing rigorous quality gates, and fostering CI/CD best practices to accelerate delivery.
                   </p>
                   <p>
-                    I participated in different types of projects, and in different roles, business analyst, development, quality, and automation with different tools and program languages. These experiences give me the possibility to analyze problems and solutions from different points of view.
+                    Having navigated roles as a Business Analyst, Full-Stack Developer, and QA Lead, I bring a holistic, end-to-end perspective to software quality. This multifaceted background empowers me to anticipate architectural bottlenecks, design resilient automation ecosystems, and drive a culture of continuous improvement within agile environments.
                   </p>
                 </div>
               )}
             </section>
 
             {/* EXPERIENCE */}
-            <section className={`relative z-10 mb-10 sm:mb-12 transition-all duration-1000 ${isBrokenUI ? 'scale-[0.98] -translate-y-2 opacity-60 experience-list' : 'experience-list'}`}>
-              <h3 className={`text-xs font-semibold tracking-widest uppercase mb-6 ${isBrokenUI ? 'text-red-500 line-through' : 'text-zinc-900'}`}>
+            <section className={"relative z-10 mb-10 sm:mb-12 transition-all duration-1000 " + (isBrokenUI ? "scale-[0.98] -translate-y-2 opacity-60 experience-list" : "experience-list")}>
+              <h3 className={"text-xs font-semibold tracking-widest uppercase mb-6 " + (isBrokenUI ? "text-red-500 line-through" : "text-zinc-900")}>
                 {isBrokenUI ? 'Work XP' : 'Experience'}
               </h3>
 
               <div className="space-y-8 print:space-y-6">
                 {fullExperience.map((job, i) => (
-                  <div key={i} className={`relative ${isBrokenUI && i > 0 ? 'hidden' : 'print:break-inside-avoid'}`}>
+                  <div key={i} className={"relative " + (isBrokenUI && i > 0 ? "hidden" : "print:break-inside-avoid")}>
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1.5">
-                      <h4 className={`font-semibold text-sm sm:text-base ${isBrokenUI ? 'text-red-800 font-mono' : 'text-zinc-900'}`}>
+                      <h4 className={"font-semibold text-sm sm:text-base " + (isBrokenUI ? "text-red-800 font-mono" : "text-zinc-900")}>
                         {isBrokenUI ? 'Manual Tester' : job.role}
                       </h4>
-                      <span className={`text-[11px] sm:text-xs font-medium mt-1 sm:mt-0 tabular-nums tracking-wide ${isBrokenUI ? 'text-red-500' : 'text-zinc-400'}`}>
+                      <span className={"text-[11px] sm:text-xs font-medium mt-1 sm:mt-0 tabular-nums tracking-wide " + (isBrokenUI ? "text-red-500" : "text-zinc-400")}>
                         {isBrokenUI ? '1990 - 1991' : job.date}
                       </span>
                     </div>
-                    <h5 className={`text-xs sm:text-[13px] font-medium mb-3 ${isBrokenUI ? 'text-red-400' : 'text-zinc-500'}`}>
+                    <h5 className={"text-xs sm:text-[13px] font-medium mb-3 " + (isBrokenUI ? "text-red-400" : "text-zinc-500")}>
                       {isBrokenUI ? 'Unknown Corp' : job.company}
                     </h5>
                     {!isBrokenUI && (
-                      <ul className="space-y-2">
-                        {job.details.map((detail, j) => (
-                          <li key={j} className="text-[13px] sm:text-sm text-zinc-600 flex items-start gap-2.5 leading-relaxed font-light">
-                            <span className="w-1 h-1 rounded-full bg-zinc-300 mt-2 shrink-0"></span>
-                            <span>{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <>
+                        <ul className="space-y-2">
+                          {job.details.map((detail, j) => (
+                            <li key={j} className="text-[13px] sm:text-sm text-zinc-600 flex items-start gap-2.5 leading-relaxed font-light">
+                              <span className="w-1 h-1 rounded-full bg-zinc-300 mt-2 shrink-0"></span>
+                              <span>{detail}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        {job.tags && job.tags.length > 0 && (
+                          <div className="flex flex-wrap gap-2 mt-3 print:mt-2">
+                            {job.tags.map(tag => (
+                              <span key={tag} className="px-2 py-0.5 bg-zinc-100 text-zinc-600 rounded text-[10px] sm:text-xs font-medium border border-zinc-200">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </>
                     )}
                   </div>
                 ))}
@@ -613,7 +657,7 @@ export default function App() {
             </section>
 
             {/* EDUCATION & SKILLS */}
-            <section className={`relative z-10 grid lg:grid-cols-2 gap-8 transition-all duration-1000 tech-stack-container print:break-inside-avoid ${isBrokenUI ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto'}`}>
+            <section className={"relative z-10 grid lg:grid-cols-2 gap-8 transition-all duration-1000 tech-stack-container print:break-inside-avoid " + (isBrokenUI ? "opacity-0 h-0 overflow-hidden" : "opacity-100 h-auto")}>
               <div>
                 <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Education</h3>
                 <ul className="space-y-4">
@@ -642,6 +686,34 @@ export default function App() {
                     <span className="text-xs text-zinc-500">Univ. Nacional de San Luis (2009-2011)</span>
                   </li>
                 </ul>
+
+                <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6 mt-10">Certifications</h3>
+                <ul className="space-y-4">
+                  <li>
+                    <a href="https://www.udemy.com/certificate/UC-2ca81437-73f0-4404-98d1-22befd4b7a8b/" target="_blank" rel="noopener noreferrer" className="group">
+                      <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                        Generative AI for QA Professionals & Software Testers <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
+                      </strong>
+                    </a>
+                    <span className="text-xs text-zinc-500 block mt-0.5">Udemy (Mar 2025) • ID: UC-2ca81437...</span>
+                  </li>
+                  <li>
+                    <a href="https://scrummanager.com/website/c/verify-cert.php?code=6401aa48b79148.88104918" target="_blank" rel="noopener noreferrer" className="group">
+                      <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                        Scrum Manager <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
+                      </strong>
+                    </a>
+                    <span className="text-xs text-zinc-500 block mt-0.5">Scrum Manager (Mar 2023) • ID: 43106</span>
+                  </li>
+                  <li>
+                    <a href="https://alumno.dexs.es/certificados/comprobar/f86d86be9d8fe91888d42f726b3a1f0b?embed=1&og=1" target="_blank" rel="noopener noreferrer" className="group">
+                      <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                        ICCD, CT, monitorización continua <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
+                      </strong>
+                    </a>
+                    <span className="text-xs text-zinc-500 block mt-0.5">DEXS (Apr 2022) • ID: f86d86be...</span>
+                  </li>
+                </ul>
               </div>
               
               <div>
@@ -653,6 +725,59 @@ export default function App() {
                     </span>
                   ))}
                 </div>
+
+                <div className="mt-10">
+                  <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Featured Repositories</h3>
+                  <ul className="space-y-4">
+                    <li>
+                      <a href="https://github.com/qatransformation/playwright_cucumber_spanish" target="_blank" rel="noopener noreferrer" className="group">
+                        <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                          playwright_cucumber_spanish <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
+                        </strong>
+                      </a>
+                      <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A Playwright automation framework integrated with Cucumber BDD, configured for Spanish language step definitions.</span>
+                    </li>
+                    <li>
+                      <a href="https://github.com/qatransformation/playwright_cucumber_pom" target="_blank" rel="noopener noreferrer" className="group">
+                        <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                          playwright_cucumber_pom <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
+                        </strong>
+                      </a>
+                      <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A robust Playwright testing framework implementing Cucumber BDD and the Page Object Model (POM) design pattern.</span>
+                    </li>
+                    <li>
+                      <a href="https://github.com/qatransformation/webdriverio-cucumber-pom-framework" target="_blank" rel="noopener noreferrer" className="group">
+                        <strong className="text-[13px] sm:text-sm font-medium text-zinc-900 block group-hover:text-blue-600 transition-colors flex items-center gap-1.5">
+                          webdriverio-cucumber-pom-framework <ExternalLink size={14} className="opacity-0 group-hover:opacity-100 transition-opacity text-blue-600" />
+                        </strong>
+                      </a>
+                      <span className="text-xs text-zinc-500 block mt-0.5 leading-relaxed">A complete WebdriverIO automation framework utilizing Cucumber for BDD and adhering to the Page Object Model (POM) architecture.</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            {/* FREELANCE PROJECT & VIDEO */}
+            <section className={`relative z-10 mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-zinc-200 transition-all duration-1000 print:break-inside-avoid ${isBrokenUI ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto'}`}>
+              <h3 className="text-xs font-semibold tracking-widest uppercase text-zinc-900 mb-6">Freelance Project Showcase</h3>
+              <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-6">
+                 <h4 className="font-semibold text-zinc-900 text-sm sm:text-base mb-2">QA Transformation Initiatives</h4>
+                 <p className="text-xs sm:text-sm text-zinc-600 mb-6 leading-relaxed">
+                   Showcasing advanced QA architecture and automation strategies implemented for freelance clients, focusing on scalable frameworks, CI/CD integration, and quality process optimization.
+                 </p>
+                 <div className="w-full aspect-video rounded-lg border border-zinc-300 overflow-hidden print:hidden shadow-sm bg-black">
+                   <video 
+                     className="w-full h-full object-cover" 
+                     controls 
+                     preload="metadata">
+                     <source src="assets/qatransformationai.mp4" type="video/mp4" />
+                     Tu navegador no soporta el elemento de video.
+                   </video>
+                 </div>
+                 <div className="hidden print:block text-sm text-zinc-500 italic mt-4">
+                   * [Video presentation available in the digital version of this CV]
+                 </div>
               </div>
             </section>
 
@@ -680,11 +805,7 @@ export default function App() {
           </div>
           <div className="p-4 h-48 md:h-56 overflow-y-auto overflow-x-auto whitespace-pre-wrap text-zinc-400">
             {logs.map((log, index) => (
-              <div key={index} className={`mb-1 ${
-                log.type === 'error' ? 'text-red-400' :
-                log.type === 'success' ? 'text-emerald-400' :
-                log.type === 'command' ? 'text-zinc-300' : 'text-zinc-500'
-              }`}>
+              <div key={index} className={"mb-1 " + (log.type === 'error' ? "text-red-400" : log.type === 'success' ? "text-emerald-400" : log.type === 'command' ? "text-zinc-300" : "text-zinc-500")}>
                 {log.msg}
               </div>
             ))}
@@ -801,7 +922,7 @@ export default function App() {
 
         {/* Visualizador IDE Modal */}
         {phase === 'IDE_FIX' && (
-          <div className="fixed inset-0 md:left-[280px] bg-black/40 backdrop-blur-md z-[80] flex items-center justify-center p-4 print:hidden">
+          <div className="fixed inset-0 md:left-[280px] bg-black/40 backdrop-blur-md z-[80] flex items-center justify-center p-2 sm:p-4 print:hidden">
             <div className="bg-[#09090b] border border-white/10 rounded-xl shadow-2xl w-[95vw] md:w-full max-w-4xl h-[65vh] flex flex-col overflow-hidden animate-in zoom-in-95">
               <div className="bg-[#121214] px-4 py-2 flex items-center gap-2 border-b border-white/5 text-zinc-500 text-[10px]">
                 <Code2 size={12} /> VS Code - Fixing BUG-404
