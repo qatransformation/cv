@@ -668,7 +668,7 @@ export default function App() {
           )}
 
           {/* CV Content - Modern Minimalist Paper */}
-          <main className={"p-6 sm:p-12 h-full relative transition-all duration-1000 print:shadow-none print:p-0 " + (isBrokenUI ? "bg-[#f4f4f5] grayscale-[50%] contrast-125 opacity-90 blur-[0.5px]" : "bg-white border border-zinc-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl")}>
+          <main className={"p-6 sm:p-12 h-full relative transition-all duration-1000 print:shadow-none print:border-none print:p-0 print:bg-transparent " + (isBrokenUI ? "bg-[#f4f4f5] grayscale-[50%] contrast-125 opacity-90 blur-[0.5px]" : "bg-white border border-zinc-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-xl")}>
             
             {/* HEADER */}
             <header className={"relative z-10 mb-10 sm:mb-12 flex flex-col md:flex-row md:justify-between md:items-start transition-all duration-1000 " + (isBrokenUI ? "border-l-4 border-red-500 pl-4 -rotate-1 skew-x-1 print:border-none print:pl-0" : "print:mb-8")}>
@@ -759,7 +759,7 @@ export default function App() {
                         <ul className="space-y-2 mb-4">
                           {job.details.map((detail, j) => (
                             <li key={j} className="text-[13px] sm:text-sm text-zinc-600 flex items-start gap-2.5 leading-relaxed font-light">
-                              <span className="w-1 h-1 rounded-full bg-indigo-200 mt-2 shrink-0 border border-indigo-200"></span>
+                              <span className="w-1 h-1 rounded-full bg-indigo-200 mt-2 shrink-0 border border-indigo-200 print:bg-zinc-400 print:border-zinc-400"></span>
                               <span>{detail}</span>
                             </li>
                           ))}
@@ -767,7 +767,7 @@ export default function App() {
                         {job.tags && job.tags.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-3 print:mt-2">
                             {job.tags.map((tag, tid) => (
-                              <span key={tid} className="px-3 py-1 bg-sky-50 text-sky-700 rounded-md text-[10px] sm:text-[11px] font-bold border border-sky-100 tracking-tight uppercase">
+                              <span key={tid} className="px-3 py-1 bg-sky-50 text-sky-700 rounded-md text-[10px] sm:text-[11px] font-bold border border-sky-100 tracking-tight uppercase print:border-zinc-300 print:text-zinc-800 print:bg-transparent">
                                 {tag}
                               </span>
                             ))}
@@ -782,7 +782,7 @@ export default function App() {
 
             {/* EDUCATION & SKILLS */}
             {!isBrokenUI && (
-              <section className="grid lg:grid-cols-2 gap-12 mb-14 border-t border-zinc-100 pt-12 relative z-10 tech-stack-container print:break-inside-avoid">
+              <section className="grid lg:grid-cols-2 gap-12 mb-14 border-t border-zinc-100 pt-12 relative z-10 tech-stack-container print:break-inside-avoid print:grid-cols-2 print:gap-8">
                 <div>
                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8">Education & Certifications</h3>
                   <ul className="space-y-6">
@@ -840,7 +840,7 @@ export default function App() {
                   <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8">Global Tech Stack</h3>
                   <div className="flex flex-wrap gap-2.5">
                     {['WebdriverIO', 'Cypress', 'Playwright', 'Appium', 'Selenium', 'Cucumber (BDD)', 'TypeScript', 'JavaScript', 'Java', 'C#', 'PHP', 'MySQL', 'Vitest', 'xUnit', 'PHP Unit', 'TestNG', 'Karate', 'Jira', 'Xray', 'Jenkins', 'Gitlab CI', 'Sonarqube', 'Postman'].map((skill, sid) => (
-                      <span key={sid} className="px-3 py-1.5 bg-violet-50 border border-violet-100 rounded-md text-[11px] font-bold text-violet-700 tracking-tight uppercase">
+                      <span key={sid} className="px-3 py-1.5 bg-violet-50 border border-violet-100 rounded-md text-[11px] font-bold text-violet-700 tracking-tight uppercase print:border-zinc-300 print:text-zinc-800 print:bg-transparent">
                         {skill}
                       </span>
                     ))}
@@ -872,14 +872,14 @@ export default function App() {
             )}
 
             {/* FREELANCE PROJECT & VIDEO */}
-            <section className={`relative z-10 mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-zinc-200 transition-all duration-1000 print:break-inside-avoid ${isBrokenUI ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto'}`}>
+            <section className={`relative z-10 mt-10 sm:mt-12 pt-8 sm:pt-10 border-t border-zinc-200 transition-all duration-1000 print:hidden ${isBrokenUI ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto'}`}>
               <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-900 mb-8 flex items-center gap-2"><PlayCircle size={16}/> Freelance Project Showcase</h3>
               <div className="bg-zinc-50 border border-zinc-200 rounded-xl p-6">
                  <h4 className="font-semibold text-zinc-900 text-sm sm:text-base mb-2">QA Transformation Initiatives</h4>
                  <p className="text-xs sm:text-sm text-zinc-600 mb-6 leading-relaxed">
                    Showcasing advanced QA architecture and automation strategies implemented for freelance clients, focusing on scalable frameworks, CI/CD integration, and quality process optimization.
                  </p>
-                 <div className="w-full aspect-video rounded-lg border border-zinc-300 overflow-hidden print:hidden shadow-sm bg-black">
+                 <div className="w-full aspect-video rounded-lg border border-zinc-300 overflow-hidden shadow-sm bg-black">
                    <video 
                      className="w-full h-full object-cover" 
                      controls 
@@ -887,9 +887,6 @@ export default function App() {
                      <source src="/cv/qatransformationai.mp4" type="video/mp4" />
                      Your browser does not support the video tag.
                    </video>
-                 </div>
-                 <div className="hidden print:block text-sm text-zinc-500 italic mt-4">
-                   * [Video presentation available in the digital version of this CV]
                  </div>
               </div>
             </section>
