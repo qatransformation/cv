@@ -367,7 +367,7 @@ export default function App() {
 
   switch (phase) {
     case 'FAILED_ALERT':
-      actionText = 'Click the blinking "REVIEW LOGS" button in the red alert above to analyze the failure.';
+      actionText = 'Click the blinking "REVIEW LOGS" button to start the self-healing process.';
       isWaiting = true;
       break;
     case 'TEST_RESULTS':
@@ -414,7 +414,7 @@ export default function App() {
   return (
     <div className={containerClasses}>
       
-      {/* FLOATING SKIP BUTTON FOR IMPATIENT USERS */}
+      {/* FLOATING SKIP BUTTON FOR IMPATIENT USERS - Hidden during FAILED_ALERT since it's in the modal now */}
       {phase !== 'FIXED' && phase !== 'FAILED_ALERT' && (
         <button
           onClick={skipToFinal}
@@ -439,23 +439,31 @@ export default function App() {
           <div className="space-y-6">
             {workflowSteps.map((step, index) => {
               let statusIcon;
+              let textClass = "text-zinc-700";
               
               const isPast = phase === 'FIXED' || index < currentStepIndex;
               const isCurrent = phase !== 'FIXED' && index === currentStepIndex;
 
               if (isPast) {
                 statusIcon = <CheckCircle2 size={16} className="text-emerald-500" />;
+                textClass = "text-emerald-500";
               } else if (isCurrent) {
                 statusIcon = <CircleDashed size={16} className="text-blue-400 animate-spin" />;
+                textClass = "text-zinc-100 font-medium";
               } else {
                 statusIcon = <div className="w-4 h-4 rounded-full border-2 border-zinc-800"></div>;
               }
 
-              if (step.id === 'FAILED_ALERT' && ['FAILED_ALERT', 'TEST_RESULTS', 'GHERKIN', 'JIRA_TICKET', 'IDE_FIX'].includes(phase)) {
+              // Mantener siempre en rojo los pasos que fallaron originalmente
+              if (step.id === 'FAILED_ALERT') {
                  statusIcon = <XCircle size={16} className="text-red-500" />;
+                 textClass = isCurrent ? "text-red-400 font-medium" : "text-red-500";
               }
-              if (step.id === 'GHERKIN' && ['GHERKIN', 'JIRA_TICKET', 'IDE_FIX'].includes(phase) && gherkinStep >= 8) {
-                 statusIcon = <XCircle size={16} className="text-red-500" />;
+              if (step.id === 'GHERKIN') {
+                 if ((isCurrent && gherkinStep >= 8) || isPast) {
+                    statusIcon = <XCircle size={16} className="text-red-500" />;
+                    textClass = isCurrent ? "text-red-400 font-medium" : "text-red-500";
+                 }
               }
 
               return (
@@ -463,7 +471,7 @@ export default function App() {
                   <div className="mt-0.5">
                     {statusIcon}
                   </div>
-                  <div className={"text-xs tracking-wide " + (isCurrent ? "text-zinc-100 font-medium" : isPast ? "text-emerald-500" : "text-zinc-700")}>
+                  <div className={`text-xs tracking-wide ${textClass}`}>
                     {step.label}
                   </div>
                 </div>
@@ -500,38 +508,67 @@ export default function App() {
         </div>
       </aside>
 
+      {/* --- INITIAL MODAL OVERLAY --- */}
+      {phase === 'FAILED_ALERT' && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center bg-[#09090b]/80 backdrop-blur-sm p-4 print:hidden">
+          <div className="bg-[#121214] border border-red-900/40 p-8 sm:p-12 rounded-2xl shadow-[0_0_60px_rgba(220,38,38,0.15)] max-w-xl w-full text-center flex flex-col items-center animate-in zoom-in-95 fade-in duration-500 relative overflow-hidden">
+            
+            {/* Top decorative line */}
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-600 to-transparent"></div>
+
+            <div className="w-16 h-16 bg-red-500/10 rounded-full flex items-center justify-center mb-6 border border-red-500/20">
+              <AlertTriangle className="text-red-500 animate-pulse" size={32} />
+            </div>
+            
+            <h2 className="text-xl sm:text-2xl font-bold text-zinc-100 mb-3">This is not an error.</h2>
+            
+            <p className="text-zinc-400 text-sm sm:text-base mb-4 leading-relaxed max-w-md">
+              This is the interactive CV of <strong className="text-zinc-200">Cecilia Ponce</strong>.<br/>
+              We have simulated a deployment pipeline failure. Please click on <span className="text-zinc-300 font-mono text-xs bg-white/5 px-1.5 py-0.5 rounded">Review Logs</span> to start the automated self-healing process.
+            </p>
+
+            <p className="text-emerald-400 font-mono text-sm mb-6 animate-pulse">Happy Testing!</p>
+
+            <button 
+              onClick={viewTestResults}
+              className="w-full sm:w-auto bg-red-600/90 hover:bg-red-500 text-white font-bold px-8 py-3.5 rounded-lg shadow-[0_0_20px_rgba(220,38,38,0.3)] hover:shadow-[0_0_30px_rgba(220,38,38,0.5)] animate-[pulse_2s_ease-in-out_infinite] ring-1 ring-red-400/50 transition-all flex items-center justify-center gap-2 text-sm"
+            >
+              <Terminal size={18} />
+              REVIEW LOGS (Heal CV)
+            </button>
+
+            <div className="w-full mt-10 pt-6 border-t border-white/5 flex flex-col items-center gap-4">
+              <p className="text-[11px] sm:text-xs text-zinc-500 italic">
+                If you are in a rush, you can skip straight to the CV, but you'll miss out on the game :)
+              </p>
+              
+              <div className="flex flex-wrap items-center justify-center gap-3">
+                <button 
+                  onClick={skipToFinal}
+                  className="text-zinc-400 hover:text-zinc-200 font-medium px-6 py-2 rounded-md border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all flex items-center justify-center gap-2 text-xs"
+                >
+                  <FastForward size={14} />
+                  SKIP TO FULL CV
+                </button>
+                <a 
+                  href="https://www.linkedin.com/in/ceciliaponce/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 font-medium px-6 py-2 rounded-md border border-blue-900/30 hover:border-blue-700/50 hover:bg-blue-900/10 transition-all flex items-center justify-center gap-2 text-xs"
+                >
+                  <ExternalLink size={14} />
+                  LINKEDIN PROFILE
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+
       {/* --- MAIN CONTENT WRAPPER --- */}
       <div className="flex-1 md:ml-[280px] relative flex justify-center pb-32 print:m-0 print:p-0 print:pb-0">
         
-        {/* INITIAL PIPELINE FAILED ALERT (TECH TERMINAL STYLE) */}
-        {phase === 'FAILED_ALERT' && (
-          <div className="fixed top-0 left-0 md:left-[280px] w-full md:w-[calc(100%-280px)] bg-[#09090b] text-zinc-300 z-50 p-4 flex flex-col sm:flex-row items-center justify-between animate-in slide-in-from-top border-b border-red-900/50 shadow-2xl print:hidden">
-            <div className="flex items-center gap-3 text-center sm:text-left">
-              <AlertTriangle className="text-red-500 hidden sm:block" size={24} />
-              <div>
-                <h3 className="font-mono font-semibold text-sm text-red-400 tracking-wide">ERR_PIPELINE_EXECUTION_FAILED</h3>
-                <p className="text-[11px] text-zinc-500 font-mono mt-0.5">3 E2E Test Cases failed on branch 'main'. Production deployment blocked.</p>
-              </div>
-            </div>
-            <div className="flex flex-wrap sm:flex-nowrap items-center justify-center gap-3 mt-3 sm:mt-0 w-full sm:w-auto">
-              <button 
-                onClick={skipToFinal}
-                className="text-zinc-300 hover:text-white font-medium px-4 py-2.5 rounded-md border border-white/20 hover:bg-white/10 transition-all flex items-center gap-2 text-xs whitespace-nowrap bg-white/5"
-              >
-                <FastForward size={14} />
-                SKIP TO FULL CV
-              </button>
-              <button 
-                onClick={viewTestResults}
-                className="bg-red-600 text-white font-bold px-6 py-2.5 rounded-md shadow-[0_0_20px_rgba(220,38,38,0.6)] hover:bg-red-500 animate-[pulse_1.5s_ease-in-out_infinite] ring-2 ring-red-400 transition-all flex items-center gap-2 text-xs whitespace-nowrap"
-              >
-                <Terminal size={14} />
-                REVIEW LOGS (Click here)
-              </button>
-            </div>
-          </div>
-        )}
-
         {/* Main CV Container */}
         <div className="w-full max-w-4xl transition-all duration-500 relative my-8 sm:my-16 px-4 sm:px-8 print:my-0 print:px-0 print:w-full print:max-w-none">
           
@@ -792,8 +829,8 @@ export default function App() {
                      className="w-full h-full object-cover" 
                      controls 
                      preload="metadata">
-                     <source src={`${import.meta.env.BASE_URL}qatransformationai.mp4`} type="video/mp4" />
-                     Tu navegador no soporta el elemento de video.
+                     <source src="/cv/qatransformationai.mp4" type="video/mp4" />
+                     Your browser does not support the video tag.
                    </video>
                  </div>
                  <div className="hidden print:block text-sm text-zinc-500 italic mt-4">
