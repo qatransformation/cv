@@ -45,6 +45,7 @@ export default function App() {
 
   // GA4 and Visits Counter
   useEffect(() => {
+    // Google tag (gtag.js) implementation for React
     if (GA_MEASUREMENT_ID) {
       const script1 = document.createElement('script');
       script1.async = true;
