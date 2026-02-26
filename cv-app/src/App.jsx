@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Bot, Terminal, ShieldCheck, ChevronRight, Mail, Phone, MapPin, Globe, GitCommit, CheckCircle, FileCode, CheckCircle2, CircleDashed, Code2, LayoutTemplate, AlertTriangle, Bug, Trello, UserPlus, PlayCircle, BadgeCheck, Activity, Loader2, Download, XCircle, FastForward, ExternalLink, Eye, ArrowDownCircle, ArrowUpCircle } from 'lucide-react';
 
-const GTM_ID = 'GTM-5LXQPPV6';
+const GA_MEASUREMENT_ID = 'G-V25X2PZENC';
 const LAST_UPDATED = 'Feb 2026';
 
 export default function App() {
@@ -43,16 +43,22 @@ export default function App() {
   const scrollToBottom = () => bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   const scrollToTop = () => topRef.current?.scrollIntoView({ behavior: 'smooth' });
 
-  // GTM and Visits Counter
+  // GA4 and Visits Counter
   useEffect(() => {
-    if (GTM_ID) {
-      (function(w,d,s,l,i){
-        w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-        var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
-        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-        f.parentNode.insertBefore(j,f);
-      })(window,document,'script','dataLayer',GTM_ID);
+    if (GA_MEASUREMENT_ID) {
+      const script1 = document.createElement('script');
+      script1.async = true;
+      script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+      document.head.appendChild(script1);
+
+      const script2 = document.createElement('script');
+      script2.innerHTML = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '${GA_MEASUREMENT_ID}');
+      `;
+      document.head.appendChild(script2);
     }
 
     fetch('https://api.counterapi.dev/v1/qatransformation-cv/portfolio_visits/up')
