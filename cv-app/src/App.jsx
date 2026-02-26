@@ -96,7 +96,7 @@ export default function App() {
         "Conducted backend testing using proprietary institutional frameworks and configured main monitoring dashboards.",
         "Developed automated tests for mobile using TypeScript and Appium on SauceLabs, and configured CI/CD pipelines."
       ],
-      tags: ["TypeScript", "WebdriverIO", "Cucumber", "Vitest", "PHPUnit", "Appium", "SauceLabs", "GitHub Copilot", "Google Gemini", "TEST UNITARIOS", "TESTING MOBILE", "BACKEND TESTING"]
+      tags: ["TypeScript", "WebdriverIO", "Cucumber", "Vitest", "PHPUnit", "Appium", "SauceLabs", "GitHub Copilot", "Google Gemini", "Unit Testing", "Mobile Testing", "Backend Testing"]
     },
     { 
       role: "QA Architect / QA Lead / Scrum Master", 
@@ -115,7 +115,7 @@ export default function App() {
         "Engaged on recruitment.",
         "Collaborate with Producto Owner and team to improve the process. Define metrics and create reports for the different projects."
       ],
-      tags: ["QA Strategy", "Scrum", "Playwright", "Cucumber", "TypeScript", "Automation Frameworks", "Metrics", "Team Leadership", "TESTING FUNCIONAL", "BACKEND TESTING"]
+      tags: ["QA Strategy", "Scrum", "Playwright", "Cucumber", "TypeScript", "Automation Frameworks", "Metrics", "Team Leadership", "Functional Testing", "Backend Testing"]
     },
     { 
       role: "QA Architect / Technical Lead", 
@@ -133,7 +133,7 @@ export default function App() {
         "Propose improvements for the processes.",
         "Audit for an external application: review of requirements and documentation, evaluate the development process, and evaluate the QA tasks. Generate a report to define the price applications according to the quality."
       ],
-      tags: ["QA Architecture", "Quality Gates", "Audits", "Pre-sales", "Process Improvement", "TESTING FUNCIONAL", "BACKEND TESTING"]
+      tags: ["QA Architecture", "Quality Gates", "Audits", "Pre-sales", "Process Improvement", "Functional Testing", "Backend Testing"]
     },
     { 
       role: "QA Manager / QA Automation", 
@@ -155,7 +155,7 @@ export default function App() {
         "Define the automation framework for the different projects according to the requirements and resources (Cypress with TypeScript, WebdriverIO with TypeScript).",
         "Develop and dictates formation course about QA and how to work in an agile environment for gerent, product managers, and other important personnel."
       ],
-      tags: ["Cypress", "WebdriverIO", "Gherkin", "TypeScript", "QA Management", "TESTING FUNCIONAL", "API TESTING", "BACKEND TESTING"]
+      tags: ["Cypress", "WebdriverIO", "Gherkin", "TypeScript", "QA Management", "Functional Testing", "API Testing", "Backend Testing"]
     },
     { 
       role: "QA Lead / QA Automation Tech Lead", 
@@ -171,7 +171,7 @@ export default function App() {
         "Design QA strategy for the different chatbots used in the project, challenge: multiples market, channels and languages.",
         "POC for client: Automation framework with java, spring boot, cucumber, docker and jenkings. Configuration of Jira with Xray to automate the process of implement new test cases using BDD."
       ],
-      tags: ["Java", "Spring Boot", "WebdriverIO", "TypeScript", "Cucumber", "Docker", "Jenkins", "Jira", "Xray", "BDD", "TESTING FUNCIONAL", "TESTING MOBILE", "API TESTING", "BACKEND TESTING"]
+      tags: ["Java", "Spring Boot", "WebdriverIO", "TypeScript", "Cucumber", "Docker", "Jenkins", "Jira", "Xray", "BDD", "Functional Testing", "Mobile Testing", "API Testing", "Backend Testing"]
     },
     { 
       role: "QA Lead / Functional & Automated Tester", 
@@ -194,7 +194,7 @@ export default function App() {
         "Testing of the mobile applications for different OS: android, iOS, and windows.",
         "Project estimation and develop test script using Selenium, Java, TestNG (page factory and page object pattern)."
       ],
-      tags: ["Appium", "Java", "TestNG", "Selenium", "iOS", "Android", "Kanban", "TESTING FUNCIONAL", "TESTING MOBILE", "BACKEND TESTING"]
+      tags: ["Appium", "Java", "TestNG", "Selenium", "iOS", "Android", "Kanban", "Functional Testing", "Mobile Testing", "Backend Testing"]
     },
     { 
       role: "Manual Tester, Automated Testing", 
@@ -210,7 +210,7 @@ export default function App() {
         "Develop automated tests for the smoke test, using Selenium Webdriver, C# (POM - PF).",
         "Some relevant projects in this account: New interactive map of San Francisco Airport. PVA, accessibility testing for the campaign for Paralyzed Veterans of America."
       ],
-      tags: ["Selenium Webdriver", "C#", "Mobile Testing", "Accessibility", "TESTING FUNCIONAL", "TESTING MOBILE", "API TESTING", "BACKEND TESTING"]
+      tags: ["Selenium Webdriver", "C#", "Mobile Testing", "Accessibility", "Functional Testing", "API Testing", "Backend Testing"]
     },
     { 
       role: "Developer Frontend", 
@@ -222,7 +222,7 @@ export default function App() {
         "Responsive web design.", 
         "Responsive email marketing."
       ],
-      tags: ["WordPress", "Joomla", "Frontend", "Responsive Design", "BACKEND TESTING"]
+      tags: ["WordPress", "Joomla", "Frontend", "Responsive Design", "Backend Testing"]
     },
     { 
       role: "Functional Analyst / Developer Back / QA Tester", 
@@ -239,7 +239,7 @@ export default function App() {
         "Reporting and defects trucking.",
         "Data preparation and Control results."
       ],
-      tags: ["PHP", "MySQL", "JavaScript", "UAT", "Manual Testing", "TESTING FUNCIONAL", "BACKEND TESTING"]
+      tags: ["PHP", "MySQL", "JavaScript", "UAT", "Manual Testing", "Functional Testing", "Backend Testing"]
     },
     { 
       role: "Team Leader / Developer / Functional Testing", 
@@ -254,7 +254,7 @@ export default function App() {
         "Installation, configuration, and maintenance of the learning platform, courses, material, and students.",
         "Support for the different clients with Enterprise Architect."
       ],
-      tags: ["Enterprise Architect", "E-learning", "Functional Testing", "Team Leadership", "TESTING FUNCIONAL", "BACKEND TESTING"]
+      tags: ["Enterprise Architect", "E-learning", "Functional Testing", "Team Leadership", "Backend Testing"]
     },
     { 
       role: "Front end and Back end / Functional Testing", 
@@ -268,7 +268,7 @@ export default function App() {
         "Reporting and defects tracking.",
         "Data Preparation and Control results."
       ],
-      tags: ["Java", "JSP", "MVC", "SEO", "Functional Testing", "TESTING FUNCIONAL", "BACKEND TESTING"]
+      tags: ["Java", "JSP", "MVC", "SEO", "Functional Testing", "Backend Testing"]
     }
   ];
 
@@ -493,7 +493,7 @@ export default function App() {
         <button
           onClick={isAtBottom ? scrollToTop : scrollToBottom}
           className="fixed bottom-8 right-8 z-[200] bg-indigo-600 text-white p-3.5 rounded-full shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:bg-indigo-700 hover:scale-110 active:scale-95 transition-all duration-300 print:hidden flex items-center justify-center group"
-          title={isAtBottom ? "Volver arriba" : "Ir al contacto"}
+          title={isAtBottom ? "Back to top" : "Go to contact"}
         >
           {isAtBottom ? (
             <ArrowUpCircle size={28} className="animate-in fade-in zoom-in duration-300" />
